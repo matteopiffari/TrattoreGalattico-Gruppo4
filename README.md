@@ -1,14 +1,14 @@
 # 🚀 Galaxy Trucker Gruppo 4
 
-Benvenuto in **Galaxy Trucker Java Edition**! 🛠️✨ Qui puoi costruire la tua astronave con pezzi di fortuna, affrontare minacce spaziali e, soprattutto, cercare di sopravvivere! 🌌🔥
+Benvenuto in **Galaxy Trucker Java Edition**! 🛠️✨ <br />Qui puoi costruire la tua astronave con pezzi di fortuna, affrontare minacce spaziali e, soprattutto, cercare di sopravvivere! 🌌🔥
 
 ---
 
 ## 📜 Funzionalità
 
-✅ Costruzione dinamica della nave con componenti randomici 🏗️
-✅ Eventi spaziali casuali che mettono alla prova la tua nave 🌠
-✅ Modalità di gioco single-player 🎮
+✅ Costruzione dinamica della nave con componenti randomici 🏗️<br />
+✅ Eventi spaziali casuali che mettono alla prova la tua nave 🌠<br />
+✅ Modalità di gioco single-player 🎮<br />
 
 ---
 
