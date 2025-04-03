@@ -8,7 +8,7 @@ Benvenuto in **Galaxy Trucker Java Edition**! 🛠️✨ <br />Qui puoi costruir
 
 ✅ Costruzione dinamica della nave con componenti randomici 🏗️<br />
 ✅ Eventi spaziali casuali che mettono alla prova la tua nave 🌠<br />
-✅ Modalità di gioco single-player 🎮<br />
+✅ Modalità di gioco Hotseat🎮<br />
 
 ---
 
