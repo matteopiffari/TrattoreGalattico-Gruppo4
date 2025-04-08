@@ -1,9 +1,9 @@
 package ship.components;
 
-public enum Side {
-    UP, RIGHT, DOWN, LEFT;
+public enum Orientazione {
+    SOPRA, DESTRA, SOTTO, SINISTRA;
 
-    public Side rotate() {
+    public Orientazione ruota() {
         return values()[(this.ordinal() + 1) % values().length];
     }
 }

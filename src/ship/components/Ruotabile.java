@@ -1,5 +1,5 @@
 package ship.components;
 
-public interface Rotable {
+public interface Ruotabile {
     public void rotate();
 }

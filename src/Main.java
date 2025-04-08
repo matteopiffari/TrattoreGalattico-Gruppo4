@@ -1,9 +1,9 @@
-import ship.Ship;
+import ship.Nave;
 
 public class Main {
     public static void main(String[] args) {
-        Ship ship = new Ship();
+        Nave nave = new Nave();
 
-        System.out.println(ship.toString());
+        System.out.println(nave.toString());
     }
 }
