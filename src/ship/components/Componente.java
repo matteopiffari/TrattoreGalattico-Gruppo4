@@ -7,7 +7,7 @@ public class Componente {
     private int y;
 
     public Componente(Connettori[] connettori) {
-        this.orientazione = Orientazione.SOPRA;
+        this.orientazione = Orientazione.NORD;
         this.connettori = connettori;
     }
 

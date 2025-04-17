@@ -1,10 +1,12 @@
 package ship;
 
+import entities.Mazzo;
 import ship.components.Componente;
 
+
 public class Nave {
-    private int umani;
-    private int alieni;
+    private int umani=3;
+    private int alieni=0;
 
     private Componente[][] nave;
 
@@ -17,6 +19,38 @@ public class Nave {
         }
     }
 
+    public void costruisciNave() {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        boolean pesca = true;  
+       
+        // Logica per posizionare componenti nella nave
+        while (pesca==true) {
+            Componente c = Mazzo.mazzoComponenti.pesca(); // Pesca un componente dal mazzo
+           if (c == null) {
+                break;                                  // Esci dal ciclo se non ci sono più componenti nel mazzo
+            }
+            System.out.println("hai pescato: " + c.toString()+" vuoi tenerlo? (si/no)");
+            
+            String risposta = scanner.nextLine().trim().toLowerCase();
+            if (risposta.equals("si")) {
+                System.out.println("Dove vuoi posizionarlo? Inserisci riga e colonna (es. 2 3):");
+                int riga = scanner.nextInt();
+                int colonna = scanner.nextInt();
+                scanner.nextLine(); // Consuma il newline rimasto
+                if () {             //creare e integrare forma effettiva della nave!!!
+                    nave[riga][colonna] = c;
+                    System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
+                } else {
+                    System.out.println("Posizione non valida.");
+                }
+            } else {
+                System.out.println("Componente scartato.");
+            }
+        }
+    }
+    
+    
+    
     @Override
     public String toString() {
         String s = "La tua nave:\n";
@@ -33,4 +67,6 @@ public class Nave {
         }
         return s;
     }
+
+
 }
