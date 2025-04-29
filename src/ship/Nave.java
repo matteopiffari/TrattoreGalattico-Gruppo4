@@ -11,10 +11,19 @@ public class Nave {
     private Componente[][] nave;
 
     public Nave() {
-        this.nave = new Componente[10][10]; // Dimensione dimostrativa, cambiare in base alle necessità
+        this.nave = new Componente[12][12]; // Dimensione dimostrativa, cambiare in base alle necessità
+        
+        if(livello==1){
+            for (int i = 0; i < nave.length; i++) {
+                for (int j = 0; j < nave[i].length; j++) {
+                    nave[i][j] = ;                  //DA CAMBIARE!!!
+                }
+            }
+        }
+        
         for (int i = 0; i < nave.length; i++) {
             for (int j = 0; j < nave[i].length; j++) {
-                nave[i][j] = null;
+                nave[i][j] = ;                  //DA CAMBIARE!!!
             }
         }
     }
@@ -25,7 +34,7 @@ public class Nave {
        
         // Logica per posizionare componenti nella nave
         while (pesca==true) {
-            Componente c = Mazzo.mazzoComponenti.pesca(); // Pesca un componente dal mazzo
+            Componente c = mazzoComponenti.pesca(); // Pesca un componente dal mazzo
            if (c == null) {
                 break;                                  // Esci dal ciclo se non ci sono più componenti nel mazzo
             }
@@ -37,9 +46,10 @@ public class Nave {
                 int riga = scanner.nextInt();
                 int colonna = scanner.nextInt();
                 scanner.nextLine(); // Consuma il newline rimasto
-                if () {             //creare e integrare forma effettiva della nave!!!
+                if (nave[riga][colonna]!=null) {             //creare e integrare forma effettiva della nave!!!
                     nave[riga][colonna] = c;
                     System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
+                    mazzoComponenti.remove(c);
                 } else {
                     System.out.println("Posizione non valida.");
                 }
