@@ -4,11 +4,11 @@ import entities.PallaCannone;
 
 public class Pirati extends Carta {
 
-	int giorniPersi;
-	int potenzaFuoco;
-	int creditiGuadagnati;
-	int numeroCannonate;
-	PallaCannone cannonate[];
+	private int giorniPersi;
+	private int potenzaFuoco;
+	private int creditiGuadagnati;
+	private int numeroCannonate;
+	private PallaCannone cannonate[];
 
 	public Pirati() {
 		giorniPersi = 2;

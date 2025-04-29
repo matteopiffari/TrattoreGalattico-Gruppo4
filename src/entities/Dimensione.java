@@ -1,0 +1,5 @@
+package entities;
+
+public enum Dimensione {
+    METEORITE_PICCOLO, METEORITE_GRANDE, PALLA_CANNONE_PICCOLA, PALLA_CANNONE_GRANDE;
+}

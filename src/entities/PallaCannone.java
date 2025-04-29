@@ -2,19 +2,19 @@ package entities;
 
 public class PallaCannone {
 
-	int direzione;
-	int grandezza;
+	private Direzione direzione;
+	private Dimensione grandezza;
 
 	public PallaCannone() {
-		direzione = (int) (Math.random() * 4) + 1;
-		grandezza = (int) (Math.random() * 2) + 1;
+		direzione = Direzione.values()[(int) (Math.random() * Direzione.values().length)];
+		grandezza = Math.random() < 0.5 ? Dimensione.PALLA_CANNONE_PICCOLA : Dimensione.PALLA_CANNONE_GRANDE;
 	}
 
-	public int getDirezione() {
+	public Direzione getDirezione() {
 		return direzione;
 	}
 
-	public int getGrandezza() {
+	public Dimensione getGrandezza() {
 		return grandezza;
 	}
 }

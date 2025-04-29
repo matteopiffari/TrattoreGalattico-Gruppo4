@@ -4,8 +4,8 @@ import entities.Meteorite;
 
 public class PioggiaMeteoriti extends Carta {
 
-	int numeroMeteoriti;
-	Meteorite meteoriti[];
+	private int numeroMeteoriti;
+	private Meteorite meteoriti[];
 
 	public PioggiaMeteoriti() {
 		numeroMeteoriti = (int) (Math.random() * 6) + 1;
