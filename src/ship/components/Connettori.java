@@ -1,5 +1,5 @@
 package ship.components;
 
 public enum Connettori {
-    SINGOLO, DOPPIO, UNIVERSALE
+    SINGOLO, DOPPIO, UNIVERSALE, NIENTE
 }
