@@ -1,56 +1,64 @@
 package cards;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import entities.PallaCannone;
+import entities.Tabellone;
 import ship.Nave;
 
-public class ZonaGuerra extends Carta{
-	
+public class ZonaGuerra extends Carta {
+
 	public void esegui(Tabellone tabellone) {
-		List<Runnable> penalty= Arrays.asList(
-				()->perdiGiorni(tabellone),
-				()->perdiMerci(),
-				()->perdiEquipaggio(tabellone),
-				()->cannonate(tabellone)
-		);
-		Collections.shuffle(penalty);	
+		List<Consumer<Nave>> penalty = Arrays.asList(
+				(n) -> perdiGiorni(tabellone, n),
+				this::perdiMerci,
+				this::perdiEquipaggio,
+				this::cannonate);
+		Collections.shuffle(penalty);
+
+		menoPotenzaFuoco(tabellone, penalty.get(0));
+		menoPotenzaMotrice(tabellone, penalty.get(1));
+		menoEquipaggio(tabellone, penalty.get(2));
 	}
-	
+
+	// #region Penalità
+
 	private void perdiGiorni(Tabellone tabellone, Nave nave) {
-		tabellone.setPosizione(nave, nave.getPosizione()-((int) (Math.random() * 4) + 1));
+		tabellone.setPosizione(nave, nave.getPosizione() - ((int) (Math.random() * 4) + 1));
 	}
-	
+
 	private void perdiMerci(Nave nave) {
-		nave.perdiMerci((int) (Math.random() * 4) + 1));
+		nave.perdiMerci((int) (Math.random() * 4) + 1);
 	}
-	
+
 	private void perdiEquipaggio(Nave nave) {
-		nave.perdiEquipaggio((int) (Math.random() * 4) + 1));
+		nave.perdiEquipaggio((int) (Math.random() * 4) + 1);
 	}
-	
+
 	private void cannonate(Nave nave) {
 		PallaCannone cannonate[] = new PallaCannone[(int) (Math.random() * 5) + 2];
-		for(int i=0; i<cannonate.length; i++) {
-			cannonate[i]=new PallaCannone();
+		for (int i = 0; i < cannonate.length; i++) {
+			cannonate[i] = new PallaCannone();
 		}
 		nave.prendiCannonate(cannonate);
 
 	}
-	
-	private void menoPotenzaFuoco(Tabellone tabellone, Runnable penalty) {
+
+	// #endregion
+
+	private void menoPotenzaFuoco(Tabellone tabellone, Consumer<Nave> penalty) {
 		Nave nave = tabellone.minorPotenzaFuoco();
-		penalty.run(tabellone, nave);
-	}
-	
-	private void menoPotenzaMotrice(Tabellone tabellone, Runnable penalty) {
-		Nave nave = tabellone.minorPotenzaMotrice();
-		penalty.run(nave);
-	}
-	
-	private void menoEquipaggio(Tabellone tabellone, Runnable penalty) {
-		Nave nave = tabellone.minorEquipaggio();
-		penalty.run(nave);
+		penalty.accept(nave);
 	}
 
+	private void menoPotenzaMotrice(Tabellone tabellone, Consumer<Nave> penalty) {
+		Nave nave = tabellone.minorPotenzaMotrice();
+		penalty.accept(nave);
+	}
+
+	private void menoEquipaggio(Tabellone tabellone, Consumer<Nave> penalty) {
+		Nave nave = tabellone.minorEquipaggio();
+		penalty.accept(nave);
+	}
 }
