@@ -8,23 +8,69 @@ public class Nave {
     private int umani = 3;
     private int alieni = 0;
 
+    boolean[][] schemaLVL1 = {
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},  
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, true, false, false, false, false, false},
+        {false, false, false, false, false, true, true, true, false, false, false, false},
+        {false, false, false, false, true, true, true, true, true, false, false, false},
+        {false, false, false, false, true, true, true, true, true, false, false, false},
+        {false, false, false, false, false, true, true, false, true, true, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false}
+    };
+    boolean[][] schemaLVL2 = {
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},  
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, true, false, true, false, false, false, false},
+        {false, false, false, false, true, true, true, true, true, false, false, false},
+        {false, false, false, true, true, true, true, true, true, true, false, false},
+        {false, false, false, true, true, true, true, true, true, true, false, false},
+        {false, false, false, true, true, true, false, true, true, true, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false}
+    };
+    boolean[][] schemaLVL3 = {
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, true, false, false, false, false, false},
+        {false, false, false, false, false, true, true, true, false, false, false, false},
+        {false, false, false, false, true, true, true, true, true, false, false, false},
+        {false, false, true, true, true, true, true, true, true, true, true, false},
+        {false, false, true, true, true, true, true, true, true, true, true, false},
+        {false, false, true, true, false, true, true, true, false, true, true, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, false, false, false, false, false, false}
+    };
+    
+    
     private Componente[][] nave;
 
     public Nave(int livello) {
         this.nave = new Componente[12][12]; // Dimensione dimostrativa, cambiare in base alle necessità
         
-        if(livello==1){
+        
+    
+
+
+
+
+
+        if(livello==2){
             for (int i = 0; i < nave.length; i++) {
                 for (int j = 0; j < nave[i].length; j++) {
                     nave[i][j] = ;                  //DA CAMBIARE!!!
                 }
             }
-        }
-        
-        for (int i = 0; i < nave.length; i++) {
-            for (int j = 0; j < nave[i].length; j++) {
-                nave[i][j] = ;                  //DA CAMBIARE!!!
-            }
+
         }
     }
 
