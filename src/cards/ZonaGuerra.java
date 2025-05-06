@@ -10,14 +10,14 @@ import ship.Nave;
 public class ZonaGuerra extends Carta {
 
 	public void esegui(Tabellone tabellone) {
-		List<Consumer<Nave>> penalty = Arrays.asList(
-				(n) -> perdiGiorni(tabellone, n),
-				this::perdiMerci,
-				this::perdiEquipaggio,
-				this::cannonate);
-		Collections.shuffle(penalty);
+		List<Consumer<Nave>> penalty = Arrays.asList(// Vengono scelte tre penalità tra: perdita di giorni, merci, equipaggio e cannonate,
+				(n) -> perdiGiorni(tabellone, n),//mescolate in ordine casuale, e applicate rispettivamente alla potenza di fuoco,
+				this::perdiMerci,//alla potenza motrice e all’equipaggio della nave.
+				this::perdiEquipaggio,//L’associazione penalità-caratteristica cambia a ogni esecuzione.
+				this::cannonate);//
+		Collections.shuffle(penalty);//
 
-		menoPotenzaFuoco(tabellone, penalty.get(0)); // attribuisce una penalità in base a un numero selezionato
+		menoPotenzaFuoco(tabellone, penalty.get(0)); // 
 		menoPotenzaMotrice(tabellone, penalty.get(1)); // 
 		menoEquipaggio(tabellone, penalty.get(2)); // 
 	}
