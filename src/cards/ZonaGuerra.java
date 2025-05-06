@@ -17,9 +17,9 @@ public class ZonaGuerra extends Carta {
 				this::cannonate);
 		Collections.shuffle(penalty);
 
-		menoPotenzaFuoco(tabellone, penalty.get(0));
-		menoPotenzaMotrice(tabellone, penalty.get(1));
-		menoEquipaggio(tabellone, penalty.get(2));
+		menoPotenzaFuoco(tabellone, penalty.get(0)); // attribuisce una penalità in base a un numero selezionato
+		menoPotenzaMotrice(tabellone, penalty.get(1)); // 
+		menoEquipaggio(tabellone, penalty.get(2)); // 
 	}
 
 	// #region Penalità
