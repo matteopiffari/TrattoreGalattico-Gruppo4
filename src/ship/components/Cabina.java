@@ -1,5 +1,5 @@
 package ship.components;
-
+//getter e setter 
 public class Cabina extends Componente {
 
     private int equipaggio;
