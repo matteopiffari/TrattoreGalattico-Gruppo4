@@ -10,8 +10,8 @@ public class PioggiaMeteoriti extends Carta {
 	public PioggiaMeteoriti() {
 		numeroMeteoriti = (int) (Math.random() * 6) + 1;
 		meteoriti = new Meteorite[numeroMeteoriti];
-		for (int i = 0; i < numeroMeteoriti; i++) {
-			meteoriti[i] = new Meteorite();
+		for (int i = 0; i < numeroMeteoriti; i++) {		//genera un numero casuale di meteoriti
+			meteoriti[i] = new Meteorite();		
 		}
 
 	}

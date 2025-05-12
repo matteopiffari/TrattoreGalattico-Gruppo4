@@ -10,7 +10,7 @@ public class Pirati extends Carta {
 	private int numeroCannonate;
 	private PallaCannone cannonate[];
 
-	public Pirati() {
+	public Pirati() {			//generazione randomica delle ricompense e penalità
 		giorniPersi = 2;
 		creditiGuadagnati = (int) (Math.random() * 12) + 1;
 		numeroCannonate = (int) (Math.random() * 6) + 1;
