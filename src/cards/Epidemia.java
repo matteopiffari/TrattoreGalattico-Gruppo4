@@ -9,16 +9,16 @@ public class Epidemia extends Carta {
 
 	public void esegui(Nave ship) {
 
-		Componente[][] nave = ship.getNave();
-
+		Componente[][] nave = ship.getNave();		//ottiene la matrice della nave
+		// Ciclo sui settori interni della nave (evita i bordi): righe 3–8, colonne 2–10
 		for (int i = 3; i < 9; i++) {
 			for (int j = 2; j < 11; j++) {
-				if (nave[i][j] instanceof Cabina) {
+				if (nave[i][j] instanceof Cabina) {		// controlla se la cella contiene una cabina
 					if (nave[i - 1][j] instanceof Cabina && nave[i][j].getConnettori()[0] != Connettori.NIENTE) {
 
 						((Cabina) nave[i][j]).setEquipaggio(((Cabina) nave[i][j]).getEquipaggio() - 1);
 						((Cabina) nave[i - 1][j]).setEquipaggio(((Cabina) nave[i - 1][j]).getEquipaggio() - 1);
-
+																												//verifica la presenza di altre cabine e riduce l'equipaggio
 					} else if (nave[i + 1][j] instanceof Cabina && nave[i][j].getConnettori()[2] != Connettori.NIENTE) {
 						((Cabina) nave[i][j]).setEquipaggio(((Cabina) nave[i][j]).getEquipaggio() - 1);
 						((Cabina) nave[i + 1][j]).setEquipaggio(((Cabina) nave[i + 1][j]).getEquipaggio() - 1);

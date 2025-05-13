@@ -5,12 +5,12 @@ public class NaveAbbandonata extends Carta {
 	private int creditiGuadagnati;
 	private int giorniPersi;
 
-	public NaveAbbandonata() {
+	public NaveAbbandonata() {			//generazione randomica delle ricompense e penalità
 		equipaggioPerso = (int) (Math.random() * 7) + 1;
 		creditiGuadagnati = (int) (Math.random() * 11) + 1;
 		giorniPersi = (int) (Math.random() * 2) + 1;
 	}
-
+	//getter
 	public int getEquipaggioPerso() {
 		return equipaggioPerso;
 	}
