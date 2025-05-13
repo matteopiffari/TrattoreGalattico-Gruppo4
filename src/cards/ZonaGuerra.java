@@ -13,9 +13,9 @@ public class ZonaGuerra extends Carta {
 		List<Consumer<Nave>> penalty = Arrays.asList(// Vengono scelte tre penalità tra: perdita di giorni, merci, equipaggio e cannonate,
 				(n) -> perdiGiorni(tabellone, n),//mescolate in ordine casuale, e applicate rispettivamente alla potenza di fuoco,
 				this::perdiMerci,//alla potenza motrice e all’equipaggio della nave.
-				this::perdiEquipaggio,//L’associazione penalità-caratteristica cambia a ogni esecuzione.
+				this::perdiEquipaggio,//
 				this::cannonate);//
-		Collections.shuffle(penalty);//
+		Collections.shuffle(penalty);//L’associazione penalità-caratteristica cambia a ogni esecuzione.
 
 		menoPotenzaFuoco(tabellone, penalty.get(0)); // 
 		menoPotenzaMotrice(tabellone, penalty.get(1)); // 
