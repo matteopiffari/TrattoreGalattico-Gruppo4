@@ -1,6 +1,8 @@
 package ship.components;
 
-public class Componente {
+import ship.Nave;
+
+public abstract class Componente {
     private Orientazione orientazione;
     private final Connettori[] connettori;
     private int x;
@@ -49,4 +51,6 @@ public class Componente {
 
     // #endregion
     // #endregion
+
+    public abstract boolean posizionabile(Nave nave, int x, int y);
 }

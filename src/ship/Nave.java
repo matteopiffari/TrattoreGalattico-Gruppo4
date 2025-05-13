@@ -196,4 +196,9 @@ public class Nave {
         return s;
     }
 
+    public Componente getComponente(int x, int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getComponente'");
+    }
+
 }
