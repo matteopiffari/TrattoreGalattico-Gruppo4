@@ -17,9 +17,9 @@ public class Mazzo<T> {
         Collections.shuffle(carte);
     }
 
-    public T pescaCarta() {
+    public T pescaCarta() throws Exception {
         if (carte.isEmpty()) {
-            return null;
+            throw new Exception("Il mazzo è vuoto.");
         }
         return carte.remove(carte.size() - 1);
     }
