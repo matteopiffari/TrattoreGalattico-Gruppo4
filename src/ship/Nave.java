@@ -65,7 +65,7 @@ public class Nave {
     }
 
     // fase costruzione nave in gioco
-    public void costruisciNave(Mazzo<Componente> mazzoComponenti) {
+    public int costruisciNave(Mazzo<Componente> mazzoComponenti) {
         int risposta;
         Componente c;
 
@@ -73,7 +73,7 @@ public class Nave {
             c = mazzoComponenti.pescaCarta(); // Pesca un componente dal mazzo
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return;
+            return -1;
         }
 
         java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -98,14 +98,17 @@ public class Nave {
             } while (schemi[livello - 1][riga - 1][colonna - 1] == false || nave[riga - 1][colonna - 1] != null);
             nave[riga - 1][colonna - 1] = c; // Posiziona il componente nella matrice
             System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
+            scanner.close();
+            return 0;
         } else if (risposta == 2) {
             mazzoComponenti.aggiungiCarta(c);
             mazzoComponenti.mescola();
+            return 0;
         } else if (risposta == 3) {
-
+            return 1;
         }
-
-        scanner.close();
+    return -1;
+        
     }
 
     /*
