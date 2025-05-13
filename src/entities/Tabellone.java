@@ -19,4 +19,5 @@ public class Tabellone {
     public void setPosizione(Nave nave, int posizione) {
         // Implementazione per impostare la posizione della nave
     }
+    
 }

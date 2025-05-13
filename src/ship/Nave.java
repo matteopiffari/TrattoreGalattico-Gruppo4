@@ -5,6 +5,7 @@ import entities.PallaCannone;
 import ship.components.Componente;
 
 public class Nave {
+
     private int umani = 2; // numero iniziale di equipaggio per il core della nave
     private int alieni = 0;
     private int livello;
