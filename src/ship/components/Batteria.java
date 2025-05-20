@@ -2,7 +2,7 @@ package ship.components;
 
 import ship.Nave;
 
-public class Batteria extends Componente {
+public class Batteria extends Componente implements Ruotabile {
 	
 	private int carica;
 	
@@ -22,14 +22,27 @@ public class Batteria extends Componente {
 	@Override
 	public boolean posizionabile(Nave nave, int x, int y) {
 		Connettori[] connettori=this.getConnettori();
-		for (int i=0; i<connettori.length; i++) {
-			Connettori connettore=nave.getComponente(x, y-1).getConnettore(Orientazione.values()[(i+2)%4]);	//prende il componente una riga sopra, poi prende il tipo di connettore a sud del componente 
-			if (connettori[i]!=connettore && (connettore!=Connettori.UNIVERSALE && connettori[i]!=Connettori.UNIVERSALE)) {
-				return false;
-			}
-		}
-		 
 
+			if (nave.getComponente(y-1, x).getConnettore(Orientazione.SUD)!=connettori[0] && ((nave.getComponente(y-1, x).getConnettore(Orientazione.SUD)==Connettori.UNIVERSALE && connettori[0]==Connettori.NIENTE) || (connettori[0]==Connettori.UNIVERSALE && nave.getComponente(y-1, x).getConnettore(Orientazione.SUD)==Connettori.NIENTE)))
+				return false;
+			if (nave.getComponente(y, x+1).getConnettore(Orientazione.OVEST)!=connettori[1] && ((nave.getComponente(y, x+1).getConnettore(Orientazione.OVEST)==Connettori.UNIVERSALE && connettori[1]==Connettori.NIENTE) || (connettori[1]==Connettori.UNIVERSALE && nave.getComponente(y, x+1).getConnettore(Orientazione.OVEST)==Connettori.NIENTE)))
+				return false;
+			if(nave.getComponente(y+1, x).getConnettore(Orientazione.NORD)!=connettori[2] && ((nave.getComponente(y+1, x).getConnettore(Orientazione.NORD)==Connettori.UNIVERSALE && connettori[2]==Connettori.NIENTE) || (connettori[2]==Connettori.UNIVERSALE && nave.getComponente(y+1, x).getConnettore(Orientazione.NORD)==Connettori.NIENTE)))
+				return false;
+			if(nave.getComponente(y, x-1).getConnettore(Orientazione.EST)!=connettori[3] && ((nave.getComponente(y, x-1).getConnettore(Orientazione.EST)==Connettori.UNIVERSALE && connettori[3]==Connettori.NIENTE)|| (connettori[3]==Connettori.UNIVERSALE && nave.getComponente(y, x-1).getConnettore(Orientazione.EST)==Connettori.NIENTE)))
+				return false;
+	
 		return true;
+	}
+
+	@Override
+	public void rotate(){
+		Connettori last = this.getConnettori()[3];
+
+		for(int i = 3; i>0; i--){
+			this.getConnettori()[i] = this.getConnettori()[i-1];
+		}
+
+		this.getConnettori()[0] = last;
 	}
 }

@@ -6,4 +6,7 @@ public class BatteriaTripla extends Batteria{
 		super(connettori, carica);
 	}
 
+
+
+
 }
