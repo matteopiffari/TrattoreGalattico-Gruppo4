@@ -2,7 +2,7 @@ package ship;
 
 import entities.Mazzo;
 import entities.PallaCannone;
-import ship.components.Componente;
+import ship.components.*;
 
 public class Nave {
 
@@ -196,9 +196,36 @@ public class Nave {
         return s;
     }
 
-    public Componente getComponente(int x, int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getComponente'");
+    public Componente getComponente(int y, int x) {
+        return nave[y][x];
+    }
+
+    public double getPotenzaFuoco() {
+        double potenzaF=0;
+        for (int i=0; i<12; i++){
+            for(int j=0; j<12; j++){
+                if (nave[i][j] instanceof Cannone)
+                potenzaF+=((Cannone)nave[i][j]).getPotenza();
+            }
+        }
+        return potenzaF;
+    }
+
+    public int getPotenzaMotrice() {
+        int potenzaM=0;
+        for (int i=0; i<12; i++){
+            for(int j=0; j<12; j++){
+                if (nave[i][j] instanceof MotoreDoppio)
+                potenzaM+=2;
+                else if(nave[i][j] instanceof Motore)
+                potenzaM+=1;
+            }
+        }
+        return potenzaM;
+    }
+
+    public int getEquipaggio() {
+        return alieni+umani;
     }
 
 }

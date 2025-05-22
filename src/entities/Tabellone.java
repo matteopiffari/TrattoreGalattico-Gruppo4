@@ -13,15 +13,33 @@ public class Tabellone {
 
 
     public Nave minorPotenzaFuoco() {
-        // Implementazione per trovare la nave con la minor potenza di fuoco
+        Nave naveMin = null;
+        for (Nave nave : navi) {        //per ogni elemento dell'array di navi controlla quale ha il minimo di potenza di fuoco
+            if (naveMin == null || nave.getPotenzaFuoco() < naveMin.getPotenzaFuoco()) {
+                naveMin = nave;
+            }
+        }
+        return naveMin;
     }
 
     public Nave minorPotenzaMotrice() {
-        // Implementazione per trovare la nave con la minor potenza motrice
+       Nave naveMin=null;
+       for (Nave nave : navi){
+        if (naveMin==null || nave.getPotenzaMotrice() < naveMin.getPotenzaMotrice()){
+            naveMin=nave;
+        }
+       }
+       return naveMin;
     }
 
     public Nave minorEquipaggio() {
-        // Implementazione per trovare la nave con il minor equipaggio
+        Nave naveMin=null;
+       for (Nave nave : navi){
+        if (naveMin==null || nave.getEquipaggio() < naveMin.getEquipaggio()){
+            naveMin=nave;
+        }
+       }
+       return naveMin;
     }
 
     public void setPosizione(Nave nave, int posizione) {

@@ -1,5 +1,5 @@
 package cards;
 
-public class Carta {
-
+public abstract class Carta {
+    
 }
