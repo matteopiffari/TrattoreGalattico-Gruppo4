@@ -34,21 +34,21 @@ public class Start {
             }while(coloriUsati.contains(colore));
 
 
-            giocatori[i]=new Giocatore();
+            
             System.out.println("Inserisci un nome");
-            giocatori[i].setNome(scanner.nextLine());
+            String nome= scanner.nextLine();
             if (colore==1){
                 coloriUsati.add(colore);
-                giocatori[i].setColore("#fc0303");
+                giocatori[i]=new Giocatore(nome, "#fc0303");
             }else if(colore==2){
                 coloriUsati.add(colore);
-            giocatori[i].setColore("#3366ff");
+                giocatori[i]=new Giocatore(nome, "#3366ff");
             }else if (colore==3){
                 coloriUsati.add(colore);
-            giocatori[i].setColore("#ffff00");
+                giocatori[i]=new Giocatore(nome, "#ffff00");
             }else if (colore==4){
                 coloriUsati.add(colore);
-            giocatori[i].setColore("#00ff00");
+                giocatori[i]=new Giocatore(nome, "#00ff00");
             }
 
 
