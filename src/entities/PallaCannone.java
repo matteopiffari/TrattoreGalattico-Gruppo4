@@ -7,7 +7,9 @@ public class PallaCannone {
 
 	public PallaCannone() {
 		direzione = Direzione.values()[(int) (Math.random() * Direzione.values().length)];
-		grandezza = Math.random() < 0.5 ? Dimensione.PALLA_CANNONE_PICCOLA : Dimensione.PALLA_CANNONE_GRANDE;	// usa l'operatore ternario (condizione ? valore_se_vero : valore_se_falso) per assegnare un valore alla variabile grandezza.
+		// usa l'operatore ternario (condizione ? vero : falso) per assegnare un valore
+		// alla variabile grandezza.
+		grandezza = Math.random() < 0.5 ? Dimensione.PALLA_CANNONE_PICCOLA : Dimensione.PALLA_CANNONE_GRANDE;
 	}
 
 	public Direzione getDirezione() {

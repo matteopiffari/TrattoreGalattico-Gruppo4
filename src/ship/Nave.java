@@ -107,8 +107,8 @@ public class Nave {
         } else if (risposta == 3) {
             return 1;
         }
-    return -1;
-        
+        return -1;
+
     }
 
     /*
@@ -201,31 +201,31 @@ public class Nave {
     }
 
     public double getPotenzaFuoco() {
-        double potenzaF=0;
-        for (int i=0; i<12; i++){
-            for(int j=0; j<12; j++){
+        double potenzaF = 0;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
                 if (nave[i][j] instanceof Cannone)
-                potenzaF+=((Cannone)nave[i][j]).getPotenza();
+                    potenzaF += ((Cannone) nave[i][j]).getPotenza();
             }
         }
         return potenzaF;
     }
 
     public int getPotenzaMotrice() {
-        int potenzaM=0;
-        for (int i=0; i<12; i++){
-            for(int j=0; j<12; j++){
+        int potenzaM = 0;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
                 if (nave[i][j] instanceof MotoreDoppio)
-                potenzaM+=2;
-                else if(nave[i][j] instanceof Motore)
-                potenzaM+=1;
+                    potenzaM += 2;
+                else if (nave[i][j] instanceof Motore)
+                    potenzaM += 1;
             }
         }
         return potenzaM;
     }
 
     public int getEquipaggio() {
-        return alieni+umani;
+        return alieni + umani;
     }
 
 }

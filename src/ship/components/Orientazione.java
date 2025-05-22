@@ -1,4 +1,5 @@
 package ship.components;
+
 //enum da utilizzare per i componenti
 public enum Orientazione {
     NORD, EST, SUD, OVEST;

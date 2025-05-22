@@ -8,10 +8,10 @@ public class Giocatore {
     private String colore;
     private String nome;
 
-    public Giocatore(String nome, String colore){
-        this.colore=colore;
-        this.nome=nome;
-        this.nave=new Nave();
+    public Giocatore(String nome, String colore) {
+        this.colore = colore;
+        this.nome = nome;
+        this.nave = new Nave();
     }
 
     public Nave getNave() {

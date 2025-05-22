@@ -10,20 +10,14 @@ import entities.*;
 public class Main {
 
     public static void main(String[] args) {
-        
-        
-        
-        
+
         // mazzoComponenti.inizializzaMazzo();
         Nave nave = new Nave();
 
-    
-       
         System.out.println(nave.toString());
 
-
         Mazzo<Componente> mazzoComponenti = new Mazzo<Componente>();
-        for (int i=0; i<8; i++){
+        for (int i = 0; i < 8; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -33,7 +27,7 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<25; i++){
+        for (int i = 0; i < 25; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -45,7 +39,7 @@ public class Main {
             carta.setOrientazione(o);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<11; i++){
+        for (int i = 0; i < 11; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -57,7 +51,7 @@ public class Main {
             carta.setOrientazione(o);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for(int i=0; i<21; i++){
+        for (int i = 0; i < 21; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -67,7 +61,7 @@ public class Main {
             carta.setOrientazione(Orientazione.NORD);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<9; i++){
+        for (int i = 0; i < 9; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -77,7 +71,7 @@ public class Main {
             carta.setOrientazione(Orientazione.NORD);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<17; i++) {
+        for (int i = 0; i < 17; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -87,7 +81,7 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<15; i++){
+        for (int i = 0; i < 15; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -97,7 +91,7 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<9; i++){
+        for (int i = 0; i < 9; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -107,7 +101,7 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -117,7 +111,7 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
@@ -127,27 +121,27 @@ public class Main {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
             conn[2] = Connettori.values()[(int) (Math.random() * 4)];
             conn[3] = Connettori.values()[(int) (Math.random() * 4)];
-            BatteriaTripla carta = new BatteriaTripla(conn,3);
+            BatteriaTripla carta = new BatteriaTripla(conn, 3);
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<11; i++){
+        for (int i = 0; i < 11; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
             conn[2] = Connettori.values()[(int) (Math.random() * 4)];
             conn[3] = Connettori.values()[(int) (Math.random() * 4)];
-            Batteria carta = new Batteria(conn,2);
+            Batteria carta = new Batteria(conn, 2);
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-        for (int i=0; i<8; i++){
+        for (int i = 0; i < 8; i++) {
             Connettori conn[] = new Connettori[4];
             conn[0] = Connettori.values()[(int) (Math.random() * 4)];
             conn[1] = Connettori.values()[(int) (Math.random() * 4)];
