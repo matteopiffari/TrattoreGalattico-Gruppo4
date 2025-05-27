@@ -3,16 +3,26 @@ package logica;
 import java.util.ArrayList;
 
 import entities.Giocatore;
+import entities.Mazzo;
+import ship.components.*;
+import cards.*;
+import entities.Tabellone;
+import ship.Nave;
 
 public class Start {
-    public void start() {
-        // initialize scanner
+    public Giocatore[] start() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         int numGiocatori;
         int difficolta;
         int colore;
         Giocatore giocatori[];
         ArrayList<Integer> coloriUsati;
+
+        System.out.println("Benvenuto in Space Game!");
+        System.out.println("Scegli la difficoltà: \n1=facile \n2=medio \n3=difficile");
+        do {
+            difficolta = scanner.nextInt();
+        } while (difficolta < 1 || difficolta > 3);
 
         System.out.println("Quanti giocatori siete?");
 
@@ -21,7 +31,6 @@ public class Start {
             numGiocatori = scanner.nextInt();
         } while (numGiocatori < 2 || numGiocatori > 4);
 
-        numGiocatori = scanner.nextInt();
         giocatori = new Giocatore[numGiocatori];
         coloriUsati = new ArrayList<Integer>();
 
@@ -34,21 +43,180 @@ public class Start {
             } while (coloriUsati.contains(colore));
 
             System.out.println("Inserisci un nome");
+            scanner.nextLine(); // Consuma il newline rimasto
             String nome = scanner.nextLine();
             if (colore == 1) {
                 coloriUsati.add(1);
-                giocatori[i] = new Giocatore(nome, "#fc0303");
+                giocatori[i] = new Giocatore(nome, "#fc0303", difficolta);
             } else if (colore == 2) {
                 coloriUsati.add(2);
-                giocatori[i] = new Giocatore(nome, "#3366ff");
+                giocatori[i] = new Giocatore(nome, "#3366ff", difficolta);
             } else if (colore == 3) {
                 coloriUsati.add(3);
-                giocatori[i] = new Giocatore(nome, "#ffff00");
+                giocatori[i] = new Giocatore(nome, "#ffff00", difficolta);
             } else if (colore == 4) {
                 coloriUsati.add(4);
-                giocatori[i] = new Giocatore(nome, "#00ff00");
+                giocatori[i] = new Giocatore(nome, "#00ff00", difficolta);
             }
 
         }
+
+        return giocatori;
+    }
+
+    public Mazzo<Componente> generaMazzoComponenti() {
+        Mazzo<Componente> mazzoComponenti = new Mazzo<Componente>();
+        for (int i = 0; i < 8; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Tubi carta = new Tubi(conn);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 25; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+
+            Orientazione o = Orientazione.values()[(int) (Math.random() * 4)];
+            Cannone carta = new Cannone(conn, o == Orientazione.NORD ? 1 : 0.5);
+            carta.setOrientazione(o);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 11; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+
+            Orientazione o = Orientazione.values()[(int) (Math.random() * 4)];
+            CannoneDoppio carta = new CannoneDoppio(conn, o == Orientazione.NORD ? 2 : 1);
+            carta.setOrientazione(o);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 21; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Motore carta = new Motore(conn);
+            carta.setOrientazione(Orientazione.NORD);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 9; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            MotoreDoppio carta = new MotoreDoppio(conn);
+            carta.setOrientazione(Orientazione.NORD);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 17; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Cabina carta = new Cabina(conn);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 15; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Stiva carta = new Stiva(conn);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 9; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            StivaSpeciale carta = new StivaSpeciale(conn);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 6; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            SupportoVitale carta = new SupportoVitale(conn, SupportoVitale.TipoSupporto.CANNONE);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 6; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            SupportoVitale carta = new SupportoVitale(conn, SupportoVitale.TipoSupporto.MOTORE);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 6; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            BatteriaTripla carta = new BatteriaTripla(conn, 3);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 11; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Batteria carta = new Batteria(conn, 2);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+        for (int i = 0; i < 8; i++) {
+            Connettori conn[] = new Connettori[4];
+            conn[0] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[1] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[2] = Connettori.values()[(int) (Math.random() * 4)];
+            conn[3] = Connettori.values()[(int) (Math.random() * 4)];
+            Scudo carta = new Scudo(conn);
+            carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
+            mazzoComponenti.aggiungiCarta(carta);
+        }
+
+        mazzoComponenti.mescola();
+        return mazzoComponenti;
+    }
+
+    public Mazzo<Carta> generaMazzoCarte() {
+        Mazzo<Carta> mazzoCarte = new Mazzo<Carta>();
+
+        return mazzoCarte;
+    }
+
+    public Tabellone inizializzaTabellone(Giocatore[] giocatori) {
+        Nave navi[] = new Nave[giocatori.length];
+        for (int i = 0; i < giocatori.length; i++) {
+            navi[i] = giocatori[i].getNave();
+        }
+
+        return new Tabellone(navi);
     }
 }

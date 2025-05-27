@@ -7,9 +7,9 @@ public class Tabellone {
     private Nave[] navi;
     private boolean[] bloccaPesca;
 
-    public Tabellone(int numNavi) {
-        navi = new Nave[numNavi];
-        bloccaPesca = new boolean[numNavi]; // l'array di bool è settato di default a false
+    public Tabellone(Nave[] navi) {
+        this.navi = navi;
+        bloccaPesca = new boolean[navi.length]; // l'array di bool è settato di default a false
     }
 
     public Nave minorPotenzaFuoco() {

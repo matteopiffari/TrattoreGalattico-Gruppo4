@@ -5,6 +5,7 @@ import entities.PallaCannone;
 import ship.components.*;
 
 public class Nave {
+    java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     private int umani = 2; // numero iniziale di equipaggio per il core della nave
     private int alieni = 0;
@@ -76,12 +77,17 @@ public class Nave {
             return -1;
         }
 
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-
         do {
             System.out.println("hai pescato: " + c.toString() +
-                    ", vuoi tenerlo?\n 1) si\n2) no\n3) termina fase di pesca");
-            risposta = scanner.nextInt();
+                    ", vuoi tenerlo?\n1) si\n2) no\n3) termina fase di pesca");
+
+            if (scanner.hasNextInt()) {
+                risposta = scanner.nextInt();
+            } else {
+                scanner.next(); // consuma l'input non valido
+                risposta = -1;
+            }
+
         } while (risposta < 1 || risposta > 3); // Assicurati che la risposta sia valida
 
         if (risposta == 1) {
@@ -95,10 +101,10 @@ public class Nave {
                 colonna = scanner.nextInt();
 
                 scanner.nextLine();
-            } while (schemi[livello - 1][riga - 1][colonna - 1] == false || nave[riga - 1][colonna - 1] != null);
+            } while (schemi[livello - 1][riga - 1][colonna - 1] == false
+                    || nave[riga - 1][colonna - 1] != null && c.posizionabile(this, colonna, riga));
             nave[riga - 1][colonna - 1] = c; // Posiziona il componente nella matrice
             System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
-            scanner.close();
             return 0;
         } else if (risposta == 2) {
             mazzoComponenti.aggiungiCarta(c);
