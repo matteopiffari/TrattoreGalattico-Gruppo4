@@ -7,11 +7,26 @@ public class Schiavisti extends Carta {
 	private int creditiGuadagnati;
 	private int potenzaFuoco;
 
-	public Schiavisti() {
-		giorniPersi = (int) (Math.random() * 2) + 1;
-		creditiGuadagnati = (int) (Math.random() * 6) + 5;
-		equipaggioPerso = (int) (Math.random() * 3) + 3;
-		potenzaFuoco = (int) (Math.random() * 3) + 6;
+	public Schiavisti(int livello) {
+		if (livello==1) {
+			giorniPersi =1;
+			creditiGuadagnati = 5;
+			equipaggioPerso = 3;
+			potenzaFuoco = 6;
+		}
+		else if(livello==2) {
+			giorniPersi = 2;
+			creditiGuadagnati = 8;
+			equipaggioPerso = 4;
+			potenzaFuoco = 7;
+		}
+		else if(livello==3) {
+			giorniPersi = 2;
+			creditiGuadagnati = 10;
+			equipaggioPerso = 5;
+			potenzaFuoco = 8;
+		}
+		
 	}
 
 	public int getGiorniPersi() {

@@ -7,15 +7,36 @@ public class Contrabbandieri extends Carta {
 	private int merciPerse;
 	private int merciGuadagnate[];
 	//generazione randomica dei parametri della carta
-	public Contrabbandieri() {
-		giorniPersi = (int) (Math.random() * 2) + 1;
-		potenzaFuoco = (int) (Math.random() * 6) + 4;
-		merciPerse = (int) (Math.random() * 3) + 2;
-		merciGuadagnate = new int[(int) (Math.random() * 4) + 1];	
-		for (int i = 0; i < merciGuadagnate.length; i++) {			
-			merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+	public Contrabbandieri(int livello) {
+		if (livello==1) {
+			giorniPersi = 1;
+			potenzaFuoco = 4;
+			merciPerse = 2;
+			merciGuadagnate = new int[3];	
+			for (int i = 0; i < merciGuadagnate.length; i++) {			
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
+		}
+		else if(livello==2) {
+			giorniPersi = 1;
+			potenzaFuoco = 8;
+			merciPerse = 3;
+			merciGuadagnate = new int[3];	
+			for (int i = 0; i < merciGuadagnate.length; i++) {			
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
+		}
+		else if(livello==3) {
+			giorniPersi = 2;
+			potenzaFuoco = 9;
+			merciPerse = 4;
+			merciGuadagnate = new int[5];	
+			for (int i = 0; i < merciGuadagnate.length; i++) {			
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
 		}
 	}
+	
 // Metodi per accedere alle informazioni della carta
 	public int getGiorniPersi() {
 		return giorniPersi;

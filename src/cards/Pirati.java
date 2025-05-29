@@ -10,13 +10,36 @@ public class Pirati extends Carta {
 	private int numeroCannonate;
 	private PallaCannone cannonate[];
 
-	public Pirati() {			//generazione randomica delle ricompense e penalità
-		giorniPersi = 2;
-		creditiGuadagnati = (int) (Math.random() * 12) + 1;
-		numeroCannonate = (int) (Math.random() * 6) + 1;
-		cannonate = new PallaCannone[numeroCannonate];
-		for (int i = 0; i < numeroCannonate; i++) {
-			cannonate[i] = new PallaCannone();
+	public Pirati(int livello) {	//generazione randomica delle ricompense e penalità
+		if (livello==1) {
+			giorniPersi = 1;
+			creditiGuadagnati = 4;
+			numeroCannonate = 3 ;
+			potenzaFuoco=5;
+			cannonate = new PallaCannone[numeroCannonate];
+			for (int i = 0; i < numeroCannonate; i++) {
+				cannonate[i] = new PallaCannone();
+			}
+		}
+		else if(livello==2) {
+			giorniPersi = 2;
+			creditiGuadagnati = 7;
+			numeroCannonate = 3 ;
+			potenzaFuoco=6;
+			cannonate = new PallaCannone[numeroCannonate];
+			for (int i = 0; i < numeroCannonate; i++) {
+				cannonate[i] = new PallaCannone();
+			}
+		}
+		else if(livello==3) {
+			giorniPersi = 2;
+			creditiGuadagnati = 12;
+			numeroCannonate = 5 ;
+			potenzaFuoco=10;
+			cannonate = new PallaCannone[numeroCannonate];
+			for (int i = 0; i < numeroCannonate; i++) {
+				cannonate[i] = new PallaCannone();
+			}
 		}
 
 	}

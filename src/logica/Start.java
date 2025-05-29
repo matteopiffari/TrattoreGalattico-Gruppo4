@@ -205,9 +205,77 @@ public class Start {
         return mazzoComponenti;
     }
 
-    public Mazzo<Carta> generaMazzoCarte() {
+    public Mazzo<Carta> generaMazzoCarte(int livello) {
         Mazzo<Carta> mazzoCarte = new Mazzo<Carta>();
-
+        if (livello>=1) {
+        	for (int i=0; i<4; i++) {
+        		mazzoCarte.aggiungiCarta(new SpazioAperto());
+        	}
+        	mazzoCarte.aggiungiCarta(new ZonaGuerra());
+        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
+        	mazzoCarte.aggiungiCarta(new Pirati(livello));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new PolvereStellare());
+        	for (int i=0; i<3; i++) {
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        	}
+        	for( int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        	}
+        	for (int i=0; i<4; i++) {
+        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        	}
+        	for (int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        	}
+        }
+        if (livello>=2) {
+        	for (int i=0; i<3; i++) {
+        		mazzoCarte.aggiungiCarta(new SpazioAperto());
+        	}
+        	mazzoCarte.aggiungiCarta(new ZonaGuerra());
+        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
+        	mazzoCarte.aggiungiCarta(new Pirati(livello));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new PolvereStellare());
+        	mazzoCarte.aggiungiCarta(new Epidemia());
+        	for (int i=0; i<3; i++) {
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        	}
+        	for( int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        	}
+        	for (int i=0; i<4; i++) {
+        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        	}
+        	for (int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        	}
+        }
+        if (livello==3) {
+        	for (int i=0; i<3; i++) {
+        		mazzoCarte.aggiungiCarta(new SpazioAperto());
+        	}
+        	mazzoCarte.aggiungiCarta(new ZonaGuerra());
+        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
+        	mazzoCarte.aggiungiCarta(new Pirati(livello));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new Sabotaggio());
+        	mazzoCarte.aggiungiCarta(new Epidemia());
+        	for (int i=0; i<3; i++) {
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        	}
+        	for( int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        	}
+        	for (int i=0; i<4; i++) {
+        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        	}
+        	for (int i=0; i<2; i++) {
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        	}
+        }
+        mazzoCarte.mescola();
         return mazzoCarte;
     }
 

@@ -6,13 +6,32 @@ public class StazioneAbbandonata extends Carta {
 	private int giorniPersi;
 	private int equipaggioNec;
 
-	public StazioneAbbandonata() {
-		merciGuadagnate = new int[(int) (Math.random() * 4) + 1];
-		for (int i = 0; i < merciGuadagnate.length; i++) {
-			merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+	public StazioneAbbandonata(int livello) {
+		if (livello==1) {
+			merciGuadagnate = new int[2];
+			for (int i = 0; i < merciGuadagnate.length; i++) {
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
+			giorniPersi = 1;
+			equipaggioNec = (int) (Math.random() * 2) + 5;
 		}
-		giorniPersi = (int) (Math.random() * 2) + 1;
-		equipaggioNec = (int) (Math.random() * 10) + 1;
+		else if (livello==2) {
+			merciGuadagnate = new int[3];
+			for (int i = 0; i < merciGuadagnate.length; i++) {
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
+			giorniPersi = 2;
+			equipaggioNec = (int) (Math.random() * 2) + 7;
+		}
+		else if (livello==3) {
+			merciGuadagnate = new int[4];
+			for (int i = 0; i < merciGuadagnate.length; i++) {
+				merciGuadagnate[i] = (int) (Math.random() * 4) + 1;
+			}
+			giorniPersi = 2;
+			equipaggioNec = (int) (Math.random() * 2) + 9;
+		}
+		
 	}
 
 	public int getGiorniPersi() {
