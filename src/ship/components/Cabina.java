@@ -60,4 +60,8 @@ public class Cabina extends Componente implements Ruotabile {
 
 		this.getConnettori()[0] = last;
 	}
+	@Override
+	public String toString() {
+		return "Cabina";
+	}
 }

@@ -67,4 +67,8 @@ public class Cannone extends Componente implements Ruotabile {
 
 		this.getConnettori()[0] = last;
 	}
+	@Override
+	public String toString() {
+		return "Cannone";
+	}
 }

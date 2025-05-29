@@ -50,4 +50,8 @@ public class Tubi extends Componente implements Ruotabile {
 
 		this.getConnettori()[0] = last;
 	}
+	@Override
+	public String toString() {
+		return "Tubi";
+	}
 }

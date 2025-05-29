@@ -79,4 +79,8 @@ public class SupportoVitale extends Cabina {	//componente necessario per ospitar
 
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Supporto Vitale";
+	}
 }
