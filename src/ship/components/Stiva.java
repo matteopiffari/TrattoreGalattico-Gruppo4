@@ -6,8 +6,8 @@ public class Stiva extends Componente implements Ruotabile {
 	protected int merci[];
 
 	public Stiva(Connettori[] connettori) {
-		super(connettori);
-		merci = new int[(int) (Math.random() * 2) + 2];
+		super(connettori);		// prende il metodo della classe padre Componente
+		merci = new int[(int) (Math.random() * 2) + 2]; 
 	}
 
 	public int[] getMerci() {

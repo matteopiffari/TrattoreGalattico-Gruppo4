@@ -10,7 +10,7 @@ public class Motore extends Componente {
 	}
 
 	@Override
-	public boolean posizionabile(Nave nave, int x, int y) {
+	public boolean posizionabile(Nave nave, int x, int y) { //controllo particolare per il motore, che deve essere forzatamente posizionato verso il basso
 		Connettori[] connettori = this.getConnettori();
 
 		if (nave.getComponente(y - 1, x).getConnettore(Orientazione.SUD) != connettori[0]

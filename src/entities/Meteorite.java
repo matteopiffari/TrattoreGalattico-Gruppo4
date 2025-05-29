@@ -6,7 +6,7 @@ public class Meteorite {
 
     public Meteorite() {
         direzione = Direzione.values()[(int) (Math.random() * Direzione.values().length)];
-        grandezza = Math.random() < 0.5 ? Dimensione.METEORITE_PICCOLO : Dimensione.METEORITE_GRANDE;
+        grandezza = Math.random() < 0.5 ? Dimensione.METEORITE_PICCOLO : Dimensione.METEORITE_GRANDE;   //if abbreviato: se vero fa meteorite piccolo, se falso fa meteorite grande
     }
 
     public Direzione getDirezione() {

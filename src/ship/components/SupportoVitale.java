@@ -2,7 +2,7 @@ package ship.components;
 
 import ship.Nave;
 
-public class SupportoVitale extends Cabina {
+public class SupportoVitale extends Cabina {	//componente necessario per ospitare un alieno
 
 	public enum TipoSupporto {
 		CANNONE, MOTORE
@@ -15,7 +15,7 @@ public class SupportoVitale extends Cabina {
 		this.tipo = tipo;
 	}
 
-	@Override
+	@Override	//controllo specifico per il supporto vitale, che deve essere posizionato forzatamente adiacente ad una cabina
 	public boolean posizionabile(Nave nave, int x, int y) {
 		Connettori[] connettori = this.getConnettori();
 

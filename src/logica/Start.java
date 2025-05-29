@@ -11,25 +11,25 @@ import ship.Nave;
 
 public class Start {
     public Giocatore[] start() {
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        java.util.Scanner scanner = new java.util.Scanner(System.in);   //il comando di chiusura dello scanner e' universale per il codice!!
         int numGiocatori;
         int difficolta;
         int colore;
         Giocatore giocatori[];
         ArrayList<Integer> coloriUsati;
-
+        //sezione input dati utente
         System.out.println("Benvenuto in Space Game!");
         System.out.println("Scegli la difficoltà: \n1=facile \n2=medio \n3=difficile");
         do {
             difficolta = scanner.nextInt();
-        } while (difficolta < 1 || difficolta > 3);
+        } while (difficolta < 1 || difficolta > 3);     //accetta soltanto un numero giusto di difficolta'
 
         System.out.println("Quanti giocatori siete?");
 
         do {
             System.out.println("Inserire un numero compreso tra 2 e 4");
             numGiocatori = scanner.nextInt();
-        } while (numGiocatori < 2 || numGiocatori > 4);
+        } while (numGiocatori < 2 || numGiocatori > 4); //accetta soltanto un numero giusto di player
 
         giocatori = new Giocatore[numGiocatori];
         coloriUsati = new ArrayList<Integer>();
@@ -46,7 +46,7 @@ public class Start {
             scanner.nextLine(); // Consuma il newline rimasto
             String nome = scanner.nextLine();
             if (colore == 1) {
-                coloriUsati.add(1);
+                coloriUsati.add(1);     //logica per non avere colori uguali tra i giocatori
                 giocatori[i] = new Giocatore(nome, "#fc0303", difficolta);
             } else if (colore == 2) {
                 coloriUsati.add(2);
@@ -63,7 +63,7 @@ public class Start {
 
         return giocatori;
     }
-
+    //#region logica generazione mazzo componenti
     public Mazzo<Componente> generaMazzoComponenti() {
         Mazzo<Componente> mazzoComponenti = new Mazzo<Componente>();
         for (int i = 0; i < 8; i++) {
@@ -200,7 +200,7 @@ public class Start {
             carta.setOrientazione(Orientazione.values()[(int) (Math.random() * 4)]);
             mazzoComponenti.aggiungiCarta(carta);
         }
-
+    //#endregion
         mazzoComponenti.mescola();
         return mazzoComponenti;
     }
@@ -281,7 +281,7 @@ public class Start {
 
     public Tabellone inizializzaTabellone(Giocatore[] giocatori) {
         Nave navi[] = new Nave[giocatori.length];
-        for (int i = 0; i < giocatori.length; i++) {
+        for (int i = 0; i < giocatori.length; i++) {    //crea un array di navi e assegna a ciascun giocatore una nave
             navi[i] = giocatori[i].getNave();
         }
 

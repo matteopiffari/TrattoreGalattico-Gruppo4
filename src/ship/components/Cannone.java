@@ -42,7 +42,7 @@ public class Cannone extends Componente implements Ruotabile {
 								&& nave.getComponente(y, x - 1).getConnettore(Orientazione.EST) == Connettori.NIENTE)))
 			return false;
 
-		Orientazione punta = this.getOrientazione();
+		Orientazione punta = this.getOrientazione();	//controlla dove mira il cannone per assegnare la giusta potenza di fuoco
 		if (punta == Orientazione.NORD && nave.getComponente(x - 1, y) != null) {
 			return false;
 		} else if (punta == Orientazione.EST && nave.getComponente(x, y + 1) != null) {

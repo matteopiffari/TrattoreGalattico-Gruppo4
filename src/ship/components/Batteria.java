@@ -19,8 +19,8 @@ public class Batteria extends Componente implements Ruotabile {
 		this.carica = carica;
 	}
 
-	@Override
-	public boolean posizionabile(Nave nave, int x, int y) {
+	@Override	//controllo se si puo' posizionare il componente, viene controllato anche che un eventuale componente adiacente abbia un connettore
+	public boolean posizionabile(Nave nave, int x, int y) {	
 		Connettori[] connettori = this.getConnettori();
 
 		if (nave.getComponente(y - 1, x).getConnettore(Orientazione.SUD) != connettori[0]
@@ -53,10 +53,10 @@ public class Batteria extends Componente implements Ruotabile {
 
 	@Override
 	public void rotate() {
-		Connettori last = this.getConnettori()[3];
+		Connettori last = this.getConnettori()[3];	//prende l'ultimo connettore per settarlo alla prima posizione nel return
 
 		for (int i = 3; i > 0; i--) {
-			this.getConnettori()[i] = this.getConnettori()[i - 1];
+			this.getConnettori()[i] = this.getConnettori()[i - 1];	
 		}
 
 		this.getConnettori()[0] = last;
