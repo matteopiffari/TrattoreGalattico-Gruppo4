@@ -10,10 +10,11 @@ import entities.Tabellone;
 import ship.Nave;
 
 public class Start {
+    private int lvl=1;
+
     public Giocatore[] start() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);   //il comando di chiusura dello scanner e' universale per il codice!!
         int numGiocatori;
-        int difficolta;
         int colore;
         Giocatore giocatori[];
         ArrayList<Integer> coloriUsati;
@@ -21,8 +22,8 @@ public class Start {
         System.out.println("Benvenuto in Space Game!");
         System.out.println("Scegli la difficoltà: \n1=facile \n2=medio \n3=difficile");
         do {
-            difficolta = scanner.nextInt();
-        } while (difficolta < 1 || difficolta > 3);     //accetta soltanto un numero giusto di difficolta'
+            lvl = scanner.nextInt();
+        } while (lvl < 1 || lvl > 3);     //accetta soltanto un numero giusto di lvl'
 
         System.out.println("Quanti giocatori siete?");
 
@@ -47,16 +48,16 @@ public class Start {
             String nome = scanner.nextLine();
             if (colore == 1) {
                 coloriUsati.add(1);     //logica per non avere colori uguali tra i giocatori
-                giocatori[i] = new Giocatore(nome, "#fc0303", difficolta);
+                giocatori[i] = new Giocatore(nome, "#fc0303", lvl);
             } else if (colore == 2) {
                 coloriUsati.add(2);
-                giocatori[i] = new Giocatore(nome, "#3366ff", difficolta);
+                giocatori[i] = new Giocatore(nome, "#3366ff", lvl);
             } else if (colore == 3) {
                 coloriUsati.add(3);
-                giocatori[i] = new Giocatore(nome, "#ffff00", difficolta);
+                giocatori[i] = new Giocatore(nome, "#ffff00", lvl);
             } else if (colore == 4) {
                 coloriUsati.add(4);
-                giocatori[i] = new Giocatore(nome, "#00ff00", difficolta);
+                giocatori[i] = new Giocatore(nome, "#00ff00", lvl);
             }
 
         }
@@ -205,74 +206,74 @@ public class Start {
         return mazzoComponenti;
     }
 
-    public Mazzo<Carta> generaMazzoCarte(int livello) {
+    public Mazzo<Carta> generaMazzoCarte() {
         Mazzo<Carta> mazzoCarte = new Mazzo<Carta>();
-        if (livello>=1) {
+        if (lvl>=1) {
         	for (int i=0; i<4; i++) {
         		mazzoCarte.aggiungiCarta(new SpazioAperto());
         	}
         	mazzoCarte.aggiungiCarta(new ZonaGuerra());
-        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
-        	mazzoCarte.aggiungiCarta(new Pirati(livello));
-        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new Schiavisti(lvl));
+        	mazzoCarte.aggiungiCarta(new Pirati(lvl));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(lvl));
         	mazzoCarte.aggiungiCarta(new PolvereStellare());
         	for (int i=0; i<3; i++) {
-        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(lvl));
         	}
         	for( int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(lvl));
         	}
         	for (int i=0; i<4; i++) {
-        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        		mazzoCarte.aggiungiCarta(new Pianeti(lvl));
         	}
         	for (int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(lvl));
         	}
         }
-        if (livello>=2) {
+        if (lvl>=2) {
         	for (int i=0; i<3; i++) {
         		mazzoCarte.aggiungiCarta(new SpazioAperto());
         	}
         	mazzoCarte.aggiungiCarta(new ZonaGuerra());
-        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
-        	mazzoCarte.aggiungiCarta(new Pirati(livello));
-        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new Schiavisti(lvl));
+        	mazzoCarte.aggiungiCarta(new Pirati(lvl));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(lvl));
         	mazzoCarte.aggiungiCarta(new PolvereStellare());
         	mazzoCarte.aggiungiCarta(new Epidemia());
         	for (int i=0; i<3; i++) {
-        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(lvl));
         	}
         	for( int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(lvl));
         	}
         	for (int i=0; i<4; i++) {
-        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        		mazzoCarte.aggiungiCarta(new Pianeti(lvl));
         	}
         	for (int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(lvl));
         	}
         }
-        if (livello==3) {
+        if (lvl==3) {
         	for (int i=0; i<3; i++) {
         		mazzoCarte.aggiungiCarta(new SpazioAperto());
         	}
         	mazzoCarte.aggiungiCarta(new ZonaGuerra());
-        	mazzoCarte.aggiungiCarta(new Schiavisti(livello));
-        	mazzoCarte.aggiungiCarta(new Pirati(livello));
-        	mazzoCarte.aggiungiCarta(new Contrabbandieri(livello));
+        	mazzoCarte.aggiungiCarta(new Schiavisti(lvl));
+        	mazzoCarte.aggiungiCarta(new Pirati(lvl));
+        	mazzoCarte.aggiungiCarta(new Contrabbandieri(lvl));
         	mazzoCarte.aggiungiCarta(new Sabotaggio());
         	mazzoCarte.aggiungiCarta(new Epidemia());
         	for (int i=0; i<3; i++) {
-        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(livello));
+        		mazzoCarte.aggiungiCarta(new PioggiaMeteoriti(lvl));
         	}
         	for( int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new NaveAbbandonata(lvl));
         	}
         	for (int i=0; i<4; i++) {
-        		mazzoCarte.aggiungiCarta(new Pianeti(livello));
+        		mazzoCarte.aggiungiCarta(new Pianeti(lvl));
         	}
         	for (int i=0; i<2; i++) {
-        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(livello));
+        		mazzoCarte.aggiungiCarta(new StazioneAbbandonata(lvl));
         	}
         }
         mazzoCarte.mescola();
