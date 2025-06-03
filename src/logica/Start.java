@@ -14,8 +14,8 @@ public class Start {
 
     public Giocatore[] start() {
         java.util.Scanner scanner = new java.util.Scanner(System.in);   //il comando di chiusura dello scanner e' universale per il codice!!
-        int numGiocatori;
-        int colore;
+        int numGiocatori=0;
+        int colore=0;
         Giocatore giocatori[];
         ArrayList<Integer> coloriUsati;
         //sezione input dati utente
@@ -28,8 +28,10 @@ public class Start {
         System.out.println("Quanti giocatori siete?");
 
         do {
-            System.out.println("Inserire un numero compreso tra 2 e 4");
-            numGiocatori = scanner.nextInt();
+            if (scanner.hasNextInt())
+                numGiocatori = scanner.nextInt();
+            else
+                scanner.next();
         } while (numGiocatori < 2 || numGiocatori > 4); //accetta soltanto un numero giusto di player
 
         giocatori = new Giocatore[numGiocatori];
@@ -39,7 +41,10 @@ public class Start {
             do {
                 do {
                     System.out.println("Inserire un colore compreso tra 1 e 4 \n1=rosso \n2=blu \n3=giallo \n4=verde");
-                    colore = scanner.nextInt();
+                    if (scanner.hasNextInt())
+                        colore = scanner.nextInt();
+                    else
+                        scanner.next();
                 } while (colore < 1 || colore > 4);
             } while (coloriUsati.contains(colore));
 

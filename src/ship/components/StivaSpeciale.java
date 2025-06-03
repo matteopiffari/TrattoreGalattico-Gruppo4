@@ -18,5 +18,8 @@ public class StivaSpeciale extends Stiva {
 		}
 		return aggiungi;
 	}
-
+	@Override
+	public String toString() {
+		return "Batteria Speciale";
+	}
 }

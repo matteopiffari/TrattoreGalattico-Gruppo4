@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ship.Nave;
 import ship.components.Componente;
 
@@ -48,16 +51,23 @@ public class Tabellone {
     }
 
     // funzione per lo svolgimento dei turni
-    public void inizializza(Mazzo<Componente> mazzoComponenti) {
+    public ArrayList<Giocatore> inizializza(Mazzo<Componente> mazzoComponenti, Giocatore[] giocatori) {
         long startTime = System.currentTimeMillis(); // prende il timestamp di adesso
         int pesca = 0;
         boolean continuaAPescare = true;
+        ArrayList<Giocatore> giocatoriOrdinati = new ArrayList<Giocatore>();
 
         while (continuaAPescare) {
             for (int i = 0; i < navi.length; i++) {
+                System.out.println("Pesca il giocatore " + giocatori[i].getNome());
                 pesca = navi[i].costruisciNave(mazzoComponenti);
-                if (pesca == 1)
+                if (pesca == 1) {
                     bloccaPesca[i] = true;
+                    giocatoriOrdinati.add(giocatori[i]);
+                }
+                    
+                
+
             }
             for (int i = 0; i < navi.length; i++) {
                 if (bloccaPesca[i])
@@ -65,13 +75,28 @@ public class Tabellone {
             }
         }
 
-        while (System.currentTimeMillis() - startTime < 110000) {
+        while (System.currentTimeMillis() - startTime < 110000 && giocatoriOrdinati.size()!=giocatori.length) {
             for (int i = 0; i < navi.length; i++) {
-                if (!bloccaPesca[i])
-                    navi[i].costruisciNave(mazzoComponenti);
+                if (!bloccaPesca[i]){
+                    System.out.println("Pesca il giocatore " + giocatori[i].getNome());
+                    pesca=navi[i].costruisciNave(mazzoComponenti);
+                    if (pesca==1){
+                        bloccaPesca[i]=true;
+                        giocatoriOrdinati.add(giocatori[i]);
+                    }  
+                }
+            }
+        }
+        if (giocatoriOrdinati.size()!=giocatori.length)
+        {
+            for (int i=0; i<giocatori.length; i++)
+            {
+                if (!giocatoriOrdinati.contains(giocatori[i]))
+                    giocatoriOrdinati.add(giocatori[i]);
             }
         }
         System.out.println("Tempo esaurito!");
+        return giocatoriOrdinati;
     }
-
+    
 }

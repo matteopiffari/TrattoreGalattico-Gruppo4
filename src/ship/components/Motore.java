@@ -43,5 +43,8 @@ public class Motore extends Componente {
 
 		return true;
 	}
-
+	@Override
+	public String toString() {
+		return "Motore";
+	}
 }
