@@ -3,6 +3,7 @@ package ship;
 import entities.Mazzo;
 import entities.PallaCannone;
 import ship.components.*;
+import logica.Legenda;
 
 public class Nave {
     java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -69,6 +70,7 @@ public class Nave {
     public int costruisciNave(Mazzo<Componente> mazzoComponenti) {
         int risposta;
         Componente c;
+        System.out.print(this.toString());
 
         try { // Try per gestire l'eccezione di mazzo vuoto
             c = mazzoComponenti.pescaCarta(); // Pesca un componente dal mazzo
@@ -76,7 +78,8 @@ public class Nave {
             System.out.println(e.getMessage());
             return -1;
         }
-
+        
+       
         do {
             System.out.println("hai pescato: " + c.toString() +
                     ", vuoi tenerlo?\n1) si\n2) no\n3) termina fase di pesca");
@@ -187,24 +190,44 @@ public class Nave {
 
     @Override
     public String toString() {
+    	System.out.println(
+				"LEGENDA: \n" +"BS = BATTERIA SINGOLA \n" +"BT = BATTERIA TRIPLA \n" 
+				+ "CA = CABINA \n"+"CC = CABINA CENTRALE \n" +"CN = CANNONE \n" +"CD = CANNONE DOPPIO \n" 
+				+"MO = MOTORE \n" + "MD = MOTORE DOPPIO \n" + "SC = SCUDO \n" + "ST = STIVA \n"
+				+"SS = STIVA SPECIALE \n" + "SV = SUPPORTO VITALE ALIENO \n" + "TB = TUBI \n"
+				+"- = CONNETTORE SINGOLO \n" + "= = CONNETTORE DOPPIO \n" + " # = CONNETTORE UNIVERSALE \n"
+				+ "< = DIREZIONE OVEST \n" + "> = DIREZIONE EST \n" + "^ = DIREZIONE NORD \n" + "v = DIREZIONE SUD");
         String s = "La tua nave:\n";
         s += "Equipaggio: " + umani + "\nAlieni: " + alieni + "\n\n";
-        for (int i = 0; i < nave.length; i++) {
-            for (int j = 0; j < nave[i].length; j++) {
+        for (int i = 3; i < 9; i++) {
+        	String cn="";
+            String cs="";
+            String c="";
+            for (int j = 2; j < 11; j++) {		//stampa grafica nave
                 if (nave[i][j] != null) {
-                    s += nave[i][j].toString() + "\t";
+                	cn += " " + nave[i][j].getConnettoreToString(Orientazione.NORD) + nave[i][j].getOrientazioneToString()+"\t";
+                    c += nave[i][j].getConnettoreToString(Orientazione.OVEST )+nave[i][j].toStringAbbreviato() + nave[i][j].getConnettoreToString(Orientazione.EST)+ "\t";
+                    cs += " " +nave[i][j].getConnettoreToString(Orientazione.SUD) + "\t";
                 } else {
-                    s += "Vuoto\t";
+                	cn += "\t";
+                    c += "o\t";
+                    cs += "\t";
                 }
             }
+            s += cn + "\n" + c + "\n" + cs + "\n";
             s += "\n";
         }
         return s;
     }
 
-    public Componente getComponente(int y, int x) {
+
+	public Componente getComponente(int y, int x) {
         return nave[y][x];
     }
+	
+	public void setComponente(int y, int x, Componente componente) {
+		nave[y][x]=componente;
+	}
 
     public double getPotenzaFuoco() {
         double potenzaF = 0;

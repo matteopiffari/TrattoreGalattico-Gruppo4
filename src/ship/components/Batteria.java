@@ -65,4 +65,9 @@ public class Batteria extends Componente implements Ruotabile {
 	public String toString() {
 		return "Batteria";
 	}
+	
+	public String toStringAbbreviato() {
+		return "BS";
+	}
+	
 }

@@ -71,4 +71,7 @@ public class Cannone extends Componente implements Ruotabile {
 	public String toString() {
 		return "Cannone";
 	}
+	public String toStringAbbreviato() {
+		return "CN";
+	}
 }

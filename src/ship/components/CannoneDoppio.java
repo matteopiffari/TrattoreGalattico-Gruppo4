@@ -9,4 +9,7 @@ public class CannoneDoppio extends Cannone {
 	public String toString() {
 		return "Cannone Doppio";
 	}
+	public String toStringAbbreviato() {
+		return "CD";
+	}
 }

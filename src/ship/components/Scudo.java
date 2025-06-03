@@ -54,4 +54,7 @@ public class Scudo extends Componente implements Ruotabile {
 	public String toString() {
 		return "Scudo";
 	}
+	public String toStringAbbreviato() {
+		return "SC";
+	}
 }

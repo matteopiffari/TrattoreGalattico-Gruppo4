@@ -32,6 +32,17 @@ public abstract class Componente {
     public Orientazione getOrientazione() {
         return orientazione;
     }
+    
+    public String getOrientazioneToString() {
+    	if (orientazione==Orientazione.NORD)
+    		return "^";
+    	else if (orientazione==Orientazione.SUD)
+    		return "v";
+    	else if (orientazione==Orientazione.EST)
+    		return ">";
+    	else
+    		return "<"; 
+    }
 
     public void setOrientazione(Orientazione orientazione) {
         this.orientazione = orientazione;
@@ -48,9 +59,21 @@ public abstract class Componente {
     public Connettori getConnettore(Orientazione orientazione) {
         return connettori[orientazione.ordinal()];
     }
+    
+    public String getConnettoreToString(Orientazione orientazione) {
+    	if (connettori[orientazione.ordinal()]==Connettori.SINGOLO)
+    		return "-";
+    	else if (connettori[orientazione.ordinal()]==Connettori.DOPPIO)
+    		return "=";
+    	else if (connettori[orientazione.ordinal()]==Connettori.UNIVERSALE)
+    		return "#";
+    	else
+    		return "";
+    }
 
     // #endregion
     // #endregion
 
     public abstract boolean posizionabile(Nave nave, int x, int y);
+    public abstract String toStringAbbreviato();
 }

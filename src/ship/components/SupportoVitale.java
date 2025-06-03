@@ -83,4 +83,7 @@ public class SupportoVitale extends Cabina {	//componente necessario per ospitar
 	public String toString() {
 		return "Supporto Vitale";
 	}
+	public String toStringAbbreviato() {
+		return "SV";
+	}
 }

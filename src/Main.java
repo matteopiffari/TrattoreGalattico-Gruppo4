@@ -13,7 +13,7 @@ public class Main {
         Start inizio = new Start();
 
         Mazzo<Componente> mazzoComponenti = inizio.generaMazzoComponenti();
-        Mazzo<Carta> mazzoCarte = inizio.generaMazzoCarte(1);
+        Mazzo<Carta> mazzoCarte = inizio.generaMazzoCarte();
 
         Giocatore giocatori[] = inizio.start();
         Tabellone tabellone = inizio.inizializzaTabellone(giocatori);

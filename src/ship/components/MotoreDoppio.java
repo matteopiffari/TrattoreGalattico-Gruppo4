@@ -9,4 +9,7 @@ public class MotoreDoppio extends Motore {
 	public String toString() {
 		return "Motore Doppio";
 	}
+	public String toStringAbbreviato() {
+		return "MD";
+	}
 }

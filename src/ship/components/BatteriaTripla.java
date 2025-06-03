@@ -9,4 +9,7 @@ public class BatteriaTripla extends Batteria {
 	public String toString() {
 		return "Batteria Tripla";
 	}
+	public String toStringAbbreviato() {
+		return "BT";
+	}
 }

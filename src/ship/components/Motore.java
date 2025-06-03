@@ -47,4 +47,7 @@ public class Motore extends Componente {
 	public String toString() {
 		return "Motore";
 	}
+	public String toStringAbbreviato() {
+		return "MO";
+	}
 }

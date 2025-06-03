@@ -74,4 +74,7 @@ public class Stiva extends Componente implements Ruotabile {
 	public String toString() {
 		return "Stiva";
 	}
+	public String toStringAbbreviato() {
+		return "ST";
+	}
 }

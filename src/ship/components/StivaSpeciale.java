@@ -20,6 +20,9 @@ public class StivaSpeciale extends Stiva {
 	}
 	@Override
 	public String toString() {
-		return "Batteria Speciale";
+		return "Stiva Speciale";
+	}
+	public String toStringAbbreviato() {
+		return "SS";
 	}
 }

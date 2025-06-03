@@ -64,4 +64,7 @@ public class Cabina extends Componente implements Ruotabile {
 	public String toString() {
 		return "Cabina";
 	}
+	public String toStringAbbreviato() {
+		return "CA";
+	}
 }

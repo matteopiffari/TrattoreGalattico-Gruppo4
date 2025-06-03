@@ -54,4 +54,7 @@ public class Tubi extends Componente implements Ruotabile {
 	public String toString() {
 		return "Tubi";
 	}
+	public String toStringAbbreviato() {
+		return "TB";
+	}
 }

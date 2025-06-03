@@ -1,6 +1,7 @@
 package entities;
 
 import ship.Nave;
+import ship.components.*;
 
 public class Giocatore {
     private Nave nave;
@@ -12,6 +13,11 @@ public class Giocatore {
         this.colore = colore;
         this.nome = nome;
         this.nave = new Nave(lvl);
+        Connettori conn[] = {Connettori.UNIVERSALE, Connettori.UNIVERSALE, Connettori.UNIVERSALE, Connettori.UNIVERSALE};
+        Componente c=new CabinaCentrale(conn);
+        nave.setComponente(6, 6, c);
+        System.out.println(nave.toString());
+        
     }
 
     public Nave getNave() {

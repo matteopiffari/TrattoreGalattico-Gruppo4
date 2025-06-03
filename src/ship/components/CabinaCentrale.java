@@ -9,4 +9,7 @@ public class CabinaCentrale extends Cabina {
 	public String toString() {
 		return "Cabina Centrale";
 	}
+	public String toStringAbbreviato() {
+		return "CC";
+	}
 }
