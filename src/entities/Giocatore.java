@@ -16,7 +16,7 @@ public class Giocatore {
         Connettori conn[] = {Connettori.UNIVERSALE, Connettori.UNIVERSALE, Connettori.UNIVERSALE, Connettori.UNIVERSALE};
         Componente c=new CabinaCentrale(conn);
         nave.setComponente(6, 6, c);
-        System.out.println(nave.toString());
+      
         
     }
 

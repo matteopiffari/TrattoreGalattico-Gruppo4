@@ -81,8 +81,16 @@ public class Nave {
         
        
         do {
-            System.out.println("hai pescato: " + c.toString() +
-                    ", vuoi tenerlo?\n1) si\n2) no\n3) termina fase di pesca");
+            String cn="";
+            String cs="";
+            String co="";
+            cn+=" "+c.getConnettoreToString(Orientazione.NORD)+c.getOrientazioneToString();
+            co+=c.getConnettoreToString(Orientazione.OVEST)+c.toStringAbbreviato()+c.getConnettoreToString(Orientazione.EST);
+            cs+=" "+c.getConnettoreToString(Orientazione.SUD);
+            
+
+            System.out.println("hai pescato: " + c.toString() +"\n"+ cn+"\n"+co+"\n"+cs+"\n" +
+                    "vuoi tenerlo?\n1) si\n2) no\n3) termina fase di pesca");
 
             if (scanner.hasNextInt()) {
                 risposta = scanner.nextInt();
@@ -96,16 +104,39 @@ public class Nave {
         if (risposta == 1) {
             int riga;
             int colonna;
+            String r;
+            while (c instanceof Ruotabile) {
+                System.out.println("Vuoi ruotarlo? (s/n)");
+                scanner.nextLine();
+               
+                r= scanner.nextLine();
+                if (r.equals("s")) {
+                    ((Ruotabile)c).rotate();
+                }
+                else
+                break;
+                String cn="";
+                String cs="";
+                String co="";
+                cn+=" "+c.getConnettoreToString(Orientazione.NORD)+c.getOrientazioneToString();
+                co+=c.getConnettoreToString(Orientazione.OVEST)+c.toStringAbbreviato()+c.getConnettoreToString(Orientazione.EST);
+                cs+=" "+c.getConnettoreToString(Orientazione.SUD);
+                System.out.println(cn+"\n"+co+"\n"+cs+"\n");
+                }
             do {
+               
                 System.out.println("Dove vuoi posizionarlo? Inserisci numero riga: ");
                 riga = scanner.nextInt();
+                
+               
 
                 System.out.println("Dove vuoi posizionarlo? Inserisci numero colonna: ");
                 colonna = scanner.nextInt();
 
                 scanner.nextLine();
+                
             } while (schemi[livello - 1][riga - 1][colonna - 1] == false
-                    || nave[riga - 1][colonna - 1] != null && c.posizionabile(this, colonna, riga));
+                    || nave[riga - 1][colonna - 1] != null || !c.posizionabile(this, colonna, riga));
             nave[riga - 1][colonna - 1] = c; // Posiziona il componente nella matrice
             System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
             return 0;
@@ -120,39 +151,7 @@ public class Nave {
 
     }
 
-    /*
-     * esempio di codice per logica dei turni dei giocatori
-     * public class PescaCarte {
-     * 
-     * public static void main(String[] args) {
-     * // Simulazione mazzo di carte
-     * Queue<String> mazzo = new LinkedList<>(List.of("Carta1", "Carta2", "Carta3",
-     * "Carta4", "Carta5", "Carta6", "Carta7", "Carta8"));
-     * 
-     * // Quattro giocatori con mano vuota
-     * List<List<String>> maniGiocatori = new ArrayList<>();
-     * for (int i = 0; i < 4; i++) {
-     * maniGiocatori.add(new ArrayList<>());
-     * }
-     * 
-     * // Turni: ogni giocatore pesca a turno finché il mazzo ha carte
-     * int turno = 0;
-     * while (!mazzo.isEmpty()) {
-     * String cartaPescata = mazzo.poll();
-     * maniGiocatori.get(turno).add(cartaPescata);
-     * System.out.println("Giocatore " + (turno + 1) + " pesca " + cartaPescata);
-     * 
-     * turno = (turno + 1) % 4; // Passa al prossimo giocatore (ciclo tra 0 e 3)
-     * }
-     * 
-     * // Stampa le mani finali
-     * for (int i = 0; i < 4; i++) {
-     * System.out.println("Mano del Giocatore " + (i + 1) + ": " +
-     * maniGiocatori.get(i));
-     * }
-     * }
-     * }
-     */
+    
 
     public void perdiMerci(int merci) {
         // Logica per perdere merci
