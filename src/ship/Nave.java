@@ -3,7 +3,6 @@ package ship;
 import entities.Mazzo;
 import entities.PallaCannone;
 import ship.components.*;
-import logica.Legenda;
 
 public class Nave {
     java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -78,18 +77,17 @@ public class Nave {
             System.out.println(e.getMessage());
             return -1;
         }
-        
-       
-        do {
-            String cn="";
-            String cs="";
-            String co="";
-            cn+=" "+c.getConnettoreToString(Orientazione.NORD)+c.getOrientazioneToString();
-            co+=c.getConnettoreToString(Orientazione.OVEST)+c.toStringAbbreviato()+c.getConnettoreToString(Orientazione.EST);
-            cs+=" "+c.getConnettoreToString(Orientazione.SUD);
-            
 
-            System.out.println("hai pescato: " + c.toString() +"\n"+ cn+"\n"+co+"\n"+cs+"\n" +
+        do {
+            String cn = "";
+            String cs = "";
+            String co = "";
+            cn += " " + c.getConnettoreToString(Orientazione.NORD) + c.getOrientazioneToString();
+            co += c.getConnettoreToString(Orientazione.OVEST) + c.toStringAbbreviato()
+                    + c.getConnettoreToString(Orientazione.EST);
+            cs += " " + c.getConnettoreToString(Orientazione.SUD);
+
+            System.out.println("hai pescato: " + c.toString() + "\n" + cn + "\n" + co + "\n" + cs + "\n" +
                     "vuoi tenerlo?\n1) si\n2) no\n3) termina fase di pesca");
 
             if (scanner.hasNextInt()) {
@@ -108,35 +106,33 @@ public class Nave {
             while (c instanceof Ruotabile) {
                 System.out.println("Vuoi ruotarlo? (s/n)");
                 scanner.nextLine();
-               
-                r= scanner.nextLine();
+
+                r = scanner.nextLine();
                 if (r.equals("s")) {
-                    ((Ruotabile)c).rotate();
-                }
-                else
-                break;
-                String cn="";
-                String cs="";
-                String co="";
-                cn+=" "+c.getConnettoreToString(Orientazione.NORD)+c.getOrientazioneToString();
-                co+=c.getConnettoreToString(Orientazione.OVEST)+c.toStringAbbreviato()+c.getConnettoreToString(Orientazione.EST);
-                cs+=" "+c.getConnettoreToString(Orientazione.SUD);
-                System.out.println(cn+"\n"+co+"\n"+cs+"\n");
-                }
+                    ((Ruotabile) c).rotate();
+                } else
+                    break;
+                String cn = "";
+                String cs = "";
+                String co = "";
+                cn += " " + c.getConnettoreToString(Orientazione.NORD) + c.getOrientazioneToString();
+                co += c.getConnettoreToString(Orientazione.OVEST) + c.toStringAbbreviato()
+                        + c.getConnettoreToString(Orientazione.EST);
+                cs += " " + c.getConnettoreToString(Orientazione.SUD);
+                System.out.println(cn + "\n" + co + "\n" + cs + "\n");
+            }
             do {
-               
+
                 System.out.println("Dove vuoi posizionarlo? Inserisci numero riga: ");
                 riga = scanner.nextInt();
-                
-               
 
                 System.out.println("Dove vuoi posizionarlo? Inserisci numero colonna: ");
                 colonna = scanner.nextInt();
 
                 scanner.nextLine();
-                
+
             } while (schemi[livello - 1][riga - 1][colonna - 1] == false
-                    || nave[riga - 1][colonna - 1] != null || !c.posizionabile(this, colonna, riga));
+                    || nave[riga - 1][colonna - 1] != null || !c.posizionabile(this, colonna - 1, riga - 1));
             nave[riga - 1][colonna - 1] = c; // Posiziona il componente nella matrice
             System.out.println("Componente posizionato in [" + riga + "][" + colonna + "].");
             return 0;
@@ -150,8 +146,6 @@ public class Nave {
         return -1;
 
     }
-
-    
 
     public void perdiMerci(int merci) {
         // Logica per perdere merci
@@ -189,44 +183,52 @@ public class Nave {
 
     @Override
     public String toString() {
-    	System.out.println(
-				"LEGENDA: \n" +"BS = BATTERIA SINGOLA \n" +"BT = BATTERIA TRIPLA \n" 
-				+ "CA = CABINA \n"+"CC = CABINA CENTRALE \n" +"CN = CANNONE \n" +"CD = CANNONE DOPPIO \n" 
-				+"MO = MOTORE \n" + "MD = MOTORE DOPPIO \n" + "SC = SCUDO \n" + "ST = STIVA \n"
-				+"SS = STIVA SPECIALE \n" + "SV = SUPPORTO VITALE ALIENO \n" + "TB = TUBI \n"
-				+"- = CONNETTORE SINGOLO \n" + "= = CONNETTORE DOPPIO \n" + " # = CONNETTORE UNIVERSALE \n"
-				+ "< = DIREZIONE OVEST \n" + "> = DIREZIONE EST \n" + "^ = DIREZIONE NORD \n" + "v = DIREZIONE SUD");
+        System.out.println(
+                "LEGENDA: \n" + "BS = BATTERIA SINGOLA \n" + "BT = BATTERIA TRIPLA \n"
+                        + "CA = CABINA \n" + "CC = CABINA CENTRALE \n" + "CN = CANNONE \n" + "CD = CANNONE DOPPIO \n"
+                        + "MO = MOTORE \n" + "MD = MOTORE DOPPIO \n" + "SC = SCUDO \n" + "ST = STIVA \n"
+                        + "SS = STIVA SPECIALE \n" + "SV = SUPPORTO VITALE ALIENO \n" + "TB = TUBI \n"
+                        + "- = CONNETTORE SINGOLO \n" + "= = CONNETTORE DOPPIO \n" + " # = CONNETTORE UNIVERSALE \n"
+                        + "< = DIREZIONE OVEST \n" + "> = DIREZIONE EST \n" + "^ = DIREZIONE NORD \n"
+                        + "v = DIREZIONE SUD");
         String s = "La tua nave:\n";
         s += "Equipaggio: " + umani + "\nAlieni: " + alieni + "\n\n";
         for (int i = 3; i < 9; i++) {
-        	String cn="";
-            String cs="";
-            String c="";
-            for (int j = 2; j < 11; j++) {		//stampa grafica nave
+            String cn = "";
+            String cs = "";
+            String c = i + 1 + ":\t";
+            for (int j = 2; j < 11; j++) { // stampa grafica nave
                 if (nave[i][j] != null) {
-                	cn += " " + nave[i][j].getConnettoreToString(Orientazione.NORD) + nave[i][j].getOrientazioneToString()+"\t";
-                    c += nave[i][j].getConnettoreToString(Orientazione.OVEST )+nave[i][j].toStringAbbreviato() + nave[i][j].getConnettoreToString(Orientazione.EST)+ "\t";
-                    cs += " " +nave[i][j].getConnettoreToString(Orientazione.SUD) + "\t";
+                    cn += "\t " + nave[i][j].getConnettoreToString(Orientazione.NORD)
+                            + nave[i][j].getOrientazioneToString();
+                    c += nave[i][j].getConnettoreToString(Orientazione.OVEST) + nave[i][j].toStringAbbreviato()
+                            + nave[i][j].getConnettoreToString(Orientazione.EST) + "\t";
+                    cs += "\t " + nave[i][j].getConnettoreToString(Orientazione.SUD);
                 } else {
-                	cn += "\t";
+                    if (i == 3 && j == 2)
+                        cn += "\t";
+                    if (i == 3)
+                        cn += +(j + 1);
+                    cn += "\t";
                     c += "o\t";
                     cs += "\t";
                 }
             }
+            if (i == 3)
+                cn += "\n";
             s += cn + "\n" + c + "\n" + cs + "\n";
             s += "\n";
         }
         return s;
     }
 
-
-	public Componente getComponente(int y, int x) {
-        return nave[y][x];
+    public Componente getComponente(int riga, int colonna) {
+        return nave[riga][colonna];
     }
-	
-	public void setComponente(int y, int x, Componente componente) {
-		nave[y][x]=componente;
-	}
+
+    public void setComponente(int riga, int colonna, Componente componente) {
+        nave[riga][colonna] = componente;
+    }
 
     public double getPotenzaFuoco() {
         double potenzaF = 0;
