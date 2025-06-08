@@ -1,5 +1,7 @@
 package ship;
 
+import java.util.ArrayList;
+
 import entities.Mazzo;
 import entities.PallaCannone;
 import ship.components.*;
@@ -10,6 +12,7 @@ public class Nave {
     private int umani = 2; // numero iniziale di equipaggio per il core della nave
     private int alieni = 0;
     private int livello;
+    private int posizione;
     // #region schemi per ogni nave, serve per controllare se la posizione scelta
     // del componente e' accettabile oppure no
     boolean[][] schemaLVL1 = {
@@ -160,8 +163,12 @@ public class Nave {
     }
 
     public int getPosizione() {
-        return 0; // Restituisce la posizione della nave
+        return posizione; // Restituisce la posizione della nave
     }
+    
+    public void setPosizione(int posizione) {
+		this.posizione = posizione;
+	}
 
     public Componente[][] getNave() {
         return nave; // Restituisce la matrice della nave
@@ -257,5 +264,20 @@ public class Nave {
     public int getEquipaggio() {
         return alieni + umani;
     }
+    
+    //come parametro passo un tipo classe che ha l'obbligo di estendere componente
+    public ArrayList<Componente> getComponentiSpecifici(Class<? extends Componente> componente) {
+    	ArrayList<Componente> componenti= new ArrayList<Componente>();
+    	 for (int i = 0; i < 12; i++) {
+             for (int j = 0; j < 12; j++) {
+            	 if(componente.isInstance(nave[i][j])) { //controllo se la classe passata è un'istanza di nave[i][j]
+            		 componenti.add(nave[i][j]);
+            	 }
+             }
+    	 }
+    	 return componenti;
+    }
+
+	
 
 }

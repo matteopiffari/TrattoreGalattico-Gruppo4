@@ -9,6 +9,7 @@ import ship.components.Componente;
 public class Tabellone {
     private Nave[] navi;
     private boolean[] bloccaPesca;
+    private final String resetColore = "\u001B[0m"; 
 
     public Tabellone(Nave[] navi) {
         this.navi = navi;
@@ -59,7 +60,7 @@ public class Tabellone {
 
         while (continuaAPescare) {
             for (int i = 0; i < navi.length; i++) {
-                System.out.println("Pesca il giocatore " + giocatori[i].getNome());
+                System.out.println("Pesca il giocatore " + giocatori[i].getColore() + giocatori[i].getNome()+ resetColore);
                 pesca = navi[i].costruisciNave(mazzoComponenti);
                 if (pesca == 1) {
                     bloccaPesca[i] = true;
@@ -78,7 +79,7 @@ public class Tabellone {
         while (System.currentTimeMillis() - startTime < 110000 && giocatoriOrdinati.size()!=giocatori.length) {
             for (int i = 0; i < navi.length; i++) {
                 if (!bloccaPesca[i]){
-                    System.out.println("Pesca il giocatore " + giocatori[i].getNome());
+                    System.out.println("Pesca il giocatore " + giocatori[i].getColore() + giocatori[i].getNome()+ resetColore);
                     pesca=navi[i].costruisciNave(mazzoComponenti);
                     if (pesca==1){
                         bloccaPesca[i]=true;
@@ -96,6 +97,9 @@ public class Tabellone {
             }
         }
         System.out.println("Tempo esaurito!");
+        for (int i=0; i<giocatoriOrdinati.size(); i++) {
+        	navi[i]=giocatoriOrdinati.get(i).getNave();
+        }
         return giocatoriOrdinati;
     }
     

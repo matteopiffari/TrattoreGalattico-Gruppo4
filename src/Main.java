@@ -18,12 +18,9 @@ public class Main {
         Giocatore giocatori[] = inizio.start();
         Tabellone tabellone = inizio.inizializzaTabellone(giocatori);
         ArrayList<Giocatore> giocatoriOrdinati=tabellone.inizializza(mazzoComponenti, giocatori);
-        for (int i=0; i<giocatoriOrdinati.size(); i++){
-            System.out.println(giocatoriOrdinati.get(i).getNome());
-        }
 
         InizioGioco inizioGioco = new InizioGioco();
-        inizioGioco.inizia(giocatori, tabellone, mazzoCarte);
+        inizioGioco.inizia(giocatoriOrdinati, tabellone, mazzoCarte);
     }
 
 }

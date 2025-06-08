@@ -54,16 +54,16 @@ public class Start {
             String nome = scanner.nextLine();
             if (colore == 1) {
                 coloriUsati.add(1); // logica per non avere colori uguali tra i giocatori
-                giocatori[i] = new Giocatore(nome, "#fc0303", lvl);
+                giocatori[i] = new Giocatore(nome, "\u001B[31m", lvl);
             } else if (colore == 2) {
                 coloriUsati.add(2);
-                giocatori[i] = new Giocatore(nome, "#3366ff", lvl);
+                giocatori[i] = new Giocatore(nome, "\u001B[34m", lvl);
             } else if (colore == 3) {
                 coloriUsati.add(3);
-                giocatori[i] = new Giocatore(nome, "#ffff00", lvl);
+                giocatori[i] = new Giocatore(nome, "\u001B[33m", lvl);
             } else if (colore == 4) {
                 coloriUsati.add(4);
-                giocatori[i] = new Giocatore(nome, "#00ff00", lvl);
+                giocatori[i] = new Giocatore(nome, "\u001B[32m", lvl);
             }
 
         }
