@@ -48,7 +48,7 @@ public class Tabellone {
     }
 
     public void setPosizione(Nave nave, int posizione) {
-        // Implementazione per impostare la posizione della nave
+        nave.setPosizione(posizione);
     }
 
     // funzione per lo svolgimento dei turni

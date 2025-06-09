@@ -11,8 +11,10 @@ public class Nave {
 
     private int umani = 2; // numero iniziale di equipaggio per il core della nave
     private int alieni = 0;
+    private int equipaggio =alieni+umani;
     private int livello;
     private int posizione;
+    private int crediti;
     // #region schemi per ogni nave, serve per controllare se la posizione scelta
     // del componente e' accettabile oppure no
     boolean[][] schemaLVL1 = {
@@ -262,7 +264,10 @@ public class Nave {
     }
 
     public int getEquipaggio() {
-        return alieni + umani;
+        return equipaggio;
+    }
+    public void setEquipaggio(int equipaggio){
+    	this.equipaggio= equipaggio;
     }
     
     //come parametro passo un tipo classe che ha l'obbligo di estendere componente
@@ -277,6 +282,14 @@ public class Nave {
     	 }
     	 return componenti;
     }
+
+	public int getCrediti() {
+		return crediti;
+	}
+
+	public void setCrediti(int crediti) {
+		this.crediti = crediti;
+	}
 
 	
 
