@@ -55,4 +55,7 @@ public class Pirati extends Carta {
 	public int getCreditiGuadagnati() {
 		return creditiGuadagnati;
 	}
+	public int getPotenzaFuoco() {
+		return potenzaFuoco;
+	}
 }
