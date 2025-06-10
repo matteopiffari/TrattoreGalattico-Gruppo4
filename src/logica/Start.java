@@ -41,7 +41,8 @@ public class Start {
         for (int i = 0; i < numGiocatori; i++) {
             do {
                 do {
-                    System.out.println("Inserire un colore compreso tra 1 e 4 \n1=rosso \n2=blu \n3=giallo \n4=verde");
+                    System.out.println(
+                            "Inserire un colore compreso tra 1 e 4 \n1 =\u001B[31m rosso \u001B[0m \n2 =\u001B[34m blu \u001B[0m \n3 =\u001B[33m giallo \u001B[0m \n4 =\u001B[32m verde \u001B[0m");
                     if (scanner.hasNextInt())
                         colore = scanner.nextInt();
                     else
