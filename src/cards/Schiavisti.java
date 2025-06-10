@@ -8,6 +8,7 @@ public class Schiavisti extends Carta {
 	private int potenzaFuoco;
 
 	public Schiavisti(int livello) {
+		super("","Si applica a tutti i giocatori; viene controllata la potenza di fuoco: se sufficiente guadagni crediti perdendo giorni, altrimenti perdi equipaggio");
 		if (livello==1) {
 			giorniPersi =1;
 			creditiGuadagnati = 5;

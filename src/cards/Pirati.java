@@ -11,6 +11,7 @@ public class Pirati extends Carta {
 	private PallaCannone cannonate[];
 
 	public Pirati(int livello) {	//generazione randomica delle ricompense e penalità
+		super("Pirati","Si applica a tutti i giocatori; viene controllata la potenza di fuoco: se e' sufficiente guadagni crediti perdendo giorni, altrimenti vieni attaccato");
 		if (livello==1) {
 			giorniPersi = 1;
 			creditiGuadagnati = 4;

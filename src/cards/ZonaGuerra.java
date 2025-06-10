@@ -8,6 +8,9 @@ import entities.Tabellone;
 import ship.Nave;
 
 public class ZonaGuerra extends Carta {
+	public ZonaGuerra(){
+		super("Zona di Guerra","La nave con minore equipaggio, quella con minore potenza motrice e quella con minore potenza di fuoco subiscono delle penalita'");
+	}
 
 	public void esegui(Tabellone tabellone) {
 		List<Consumer<Nave>> penalty = Arrays.asList(// Vengono scelte tre penalità tra: perdita di giorni, merci, equipaggio e cannonate,

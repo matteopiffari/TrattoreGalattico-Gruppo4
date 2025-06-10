@@ -6,6 +6,9 @@ import ship.components.Cabina;
 import ship.components.Componente;
 
 public class Epidemia extends Carta {
+	public Epidemia(){
+		super("Epidemia", "rimuove un membro dell'equipaggio da ogni cabina occupata interconnessa ad un'altra cabina occupata");
+	}
 
 	public void esegui(Nave ship) {
 

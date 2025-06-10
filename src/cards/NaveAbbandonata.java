@@ -6,6 +6,7 @@ public class NaveAbbandonata extends Carta {
 	private int giorniPersi;
 
 	public NaveAbbandonata(int livello) {	//generazione randomica delle ricompense e penalità
+		super("Nave Abbandonata", "Opportunita' per un solo giocatore; scegli se perdere equipaggio e giorni per guadagnare crediti, se il giocatore rifiuta passa al giocatore successivo");
 		if (livello==1) {
 			equipaggioPerso = (int) (Math.random() * 2) + 2;		//funzione per generare un numero random da 1 a 7
 			creditiGuadagnati = (int) (Math.random() * 2) + 3;

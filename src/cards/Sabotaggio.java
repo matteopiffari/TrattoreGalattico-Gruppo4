@@ -3,6 +3,9 @@ package cards;
 import ship.Nave;
 
 public class Sabotaggio extends Carta {
+	public Sabotaggio(){
+		super("Sabotaggio", "Distrugge un componente casuale del giocatore con meno equipaggio");
+	}
 	
 	public void esegui(Nave nave) {
 		for(int i=0; i<3; i++) {

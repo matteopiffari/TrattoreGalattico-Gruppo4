@@ -27,6 +27,16 @@ public class Stiva extends Componente implements Ruotabile {
 		}
 		return aggiungi;
 	}
+	public boolean perdiMerci(){
+		for (int i=0; i<merci.length; i++)
+		{
+			if (merci[i]!=0) {
+				merci[i]=0;
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public boolean posizionabile(Nave nave, int x, int y) {
@@ -79,6 +89,7 @@ public class Stiva extends Componente implements Ruotabile {
 
 		return true;
 	}
+	public 
 
 	@Override
 	public void rotate() {

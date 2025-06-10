@@ -7,6 +7,7 @@ public class StazioneAbbandonata extends Carta {
 	private int equipaggioNec;
 
 	public StazioneAbbandonata(int livello) {
+		super("Stazione Abbandonata","opportunita' per un solo giocatore: scegli se perdere giorni ed equipaggio per guadagnare merci, altrimenti passa al prossimo giocatore");
 		if (livello==1) {
 			merciGuadagnate = new int[2];
 			for (int i = 0; i < merciGuadagnate.length; i++) {

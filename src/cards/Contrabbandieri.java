@@ -8,6 +8,7 @@ public class Contrabbandieri extends Carta {
 	private int merciGuadagnate[];
 	//generazione randomica dei parametri della carta
 	public Contrabbandieri(int livello) {
+		super("Contrabbandieri", "Attaccano tutti i giocatori in ordine; controlla la potenza di fuoco: se è sufficiente puoi reclamare la merce perdendo giorni, altrimenti perdi merci");
 		if (livello==1) {
 			giorniPersi = 1;
 			potenzaFuoco = 4;

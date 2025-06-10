@@ -152,18 +152,6 @@ public class Nave {
 
     }
 
-    public void perdiMerci(int merci) {
-        // Logica per perdere merci
-    }
-
-    public void perdiEquipaggio(int equipaggio) {
-        // Logica per perdere equipaggio
-    }
-
-    public void prendiCannonate(PallaCannone[] cannonate) {
-        // Logica per prendere cannonate
-    }
-
     public int getPosizione() {
         return posizione; // Restituisce la posizione della nave
     }
@@ -186,8 +174,21 @@ public class Nave {
         return nave[x][y] == null; // Controlla se la posizione è vuota
     }
 
-    public int contaConnettori() {
-        return 0; // Logica per contare i connettori
+    public int contaConnettori() {      // Logica per contare i connettori
+        int conta=0;
+        for (int i=3; i<9; i++) {
+            for (int j=2; j<11; j++) {
+                if (nave[i][j]!=null && nave[i-1][j]==null && nave[i][j].getConnettore(Orientazione.NORD)!=Connettori.NIENTE)
+                conta++;
+                if (nave[i][j]!=null && nave[i][j+1]==null && nave[i][j].getConnettore(Orientazione.EST)!=Connettori.NIENTE)
+                conta++;
+                if (nave[i][j]!=null && nave[i+1][j]==null && nave[i][j].getConnettore(Orientazione.SUD)!=Connettori.NIENTE)
+                conta++;
+                if (nave[i][j]!=null && nave[i][j-1]==null && nave[i][j].getConnettore(Orientazione.OVEST)!=Connettori.NIENTE)
+                conta++;
+            }
+        }
+        return conta; 
     }
 
     @Override
@@ -290,7 +291,16 @@ public class Nave {
 	public void setCrediti(int crediti) {
 		this.crediti = crediti;
 	}
-
+    public boolean presenzaScudo(Orientazione orientazione) {
+        for (int i = 0; i < 12; i++) {
+             for (int j = 0; j < 12; j++) {
+                if (nave[i][j] instanceof Scudo)
+                    if (nave[i][j].getOrientazione()==orientazione || (nave[i][j].getOrientazione().ordinal() +1) %4 == orientazione.ordinal())
+                        return true;	 
+            }
+    	 }
+         return false;
+    }
 	
 
 }
