@@ -5,7 +5,6 @@ import ship.components.*;
 
 public class Giocatore {
     private Nave nave;
-    private int soldi;
     private String colore;
     private String nome;
 
@@ -26,14 +25,6 @@ public class Giocatore {
 
     public void setNave(Nave nave) {
         this.nave = nave;
-    }
-
-    public int getSoldi() {
-        return soldi;
-    }
-
-    public void setSoldi(int soldi) {
-        this.soldi = soldi;
     }
 
     public String getColore() {

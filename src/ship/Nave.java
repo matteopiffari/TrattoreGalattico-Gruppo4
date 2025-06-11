@@ -312,7 +312,7 @@ public class Nave {
                         + "< = DIREZIONE OVEST \n" + "> = DIREZIONE EST \n" + "^ = DIREZIONE NORD \n"
                         + "v = DIREZIONE SUD");
         String s = "La tua nave:\n";
-        s += "Equipaggio: " + umani + "\nAlieni: " + alieni + "\n\n";
+        s += "Equipaggio: " + equipaggio + "\n\n";
         for (int i = 3; i < 9; i++) {
             String cn = "";
             String cs = "";
@@ -533,8 +533,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.EST) == false) {
                                 this.distruggiComponente(posizione, t);
-                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
-                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (posizione + 1) + "]["
+                                        + (t + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "
@@ -573,8 +573,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.OVEST) == false) {
                                 this.distruggiComponente(posizione, t);
-                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
-                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (posizione + 1) + "]["
+                                        + (t + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "
@@ -588,5 +588,4 @@ public class Nave {
             }
         }
     }
-
 }

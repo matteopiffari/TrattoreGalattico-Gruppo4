@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import ship.Nave;
@@ -170,6 +171,98 @@ public class Tabellone {
             return true; // tutti i giocatori sono stati sconfitti, partita finita senza vincitore
         }
         return false; // partita non ancora finita
+    }
+
+    public void controllaIntegritaNave(ArrayList<Giocatore> giocatori) {
+        for (int i = 0; i < giocatori.size(); i++) {
+            Nave nave = giocatori.get(i).getNave();
+
+            if (!isNaveIntegra(nave)) {
+                System.out.println("La nave del giocatore " + i + " non e' integra!");
+                // Qui puoi aggiungere la logica per gestire una nave non integra
+                // ad esempio: giocatori.get(i).setNaveIntegra(false);
+            } else {
+                System.out.println("La nave del giocatore " + i + "  e' integra!");
+            }
+        }
+    }
+
+    private boolean isNaveIntegra(Nave nave) {
+        // Assumendo che la nave sia una matrice di componenti
+        Componente[][] matriceNave = nave.getNave();
+        int righe = matriceNave.length;
+        int colonne = matriceNave[0].length;
+
+        // Matrice per tenere traccia dei componenti visitati
+        boolean[][] visitati = new boolean[righe][colonne];
+
+        // Verifica che la cabina centrale esista in posizione (6,6)
+        if (matriceNave[6][6] == null) {
+            return false; // Non c'è cabina centrale
+        }
+
+        // Avvia DFS dalla cabina centrale
+        dfs(matriceNave, visitati, 6, 6, righe, colonne);
+
+        // Controlla se tutti i componenti esistenti sono stati visitati
+        for (int i = 0; i < righe; i++) {
+            for (int j = 0; j < colonne; j++) {
+                if (matriceNave[i][j] != null && !visitati[i][j]) {
+                    return false; // Componente non collegato trovato
+                }
+            }
+        }
+
+        return true; // Tutti i componenti sono collegati
+    }
+
+    private void dfs(Componente[][] matrice, boolean[][] visitati, int riga, int col, int righe, int colonne) {
+        // Controlla i limiti e se la cella è già visitata o vuota
+        if (riga < 0 || riga >= righe || col < 0 || col >= colonne || visitati[riga][col]
+                || matrice[riga][col] == null) {
+            return;
+        }
+
+        // Marca come visitato
+        visitati[riga][col] = true;
+
+        // Visita tutti i 4 vicini (su, giù, sinistra, destra)
+        dfs(matrice, visitati, riga - 1, col, righe, colonne); // su
+        dfs(matrice, visitati, riga + 1, col, righe, colonne); // giù
+        dfs(matrice, visitati, riga, col - 1, righe, colonne); // sinistra
+        dfs(matrice, visitati, riga, col + 1, righe, colonne); // destra
+    }
+
+    public void fineGioco(ArrayList<Giocatore> giocatori) {
+
+        giocatori.sort(Comparator.comparingInt((Giocatore g) -> g.getNave().getCrediti()).reversed()); // prende l'array
+                                                                                                       // di giocatori e
+                                                                                                       // li compara in
+                                                                                                       // base al numero
+                                                                                                       // di crediti
+                                                                                                       // decrescente,
+                                                                                                       // riordinandoli
+                                                                                                       // alla fine
+        if (giocatori.get(0).getNave().getCrediti() > giocatori.get(1).getNave().getCrediti())
+            System.out.println("Vince " + giocatori.get(0).getColore() + giocatori.get(0).getNome() + resetColore);
+        else {
+            ArrayList<Giocatore> giocatoriInParita = new ArrayList<Giocatore>();
+            System.out.println("Giocatori in parita'");
+            for (int i = 0; i < giocatori.size() - 1; i++) {
+                if (giocatori.get(i).getNave().getCrediti() == giocatori.get(i + 1).getNave().getCrediti()) {
+                    if (!giocatoriInParita.contains(giocatori.get(i))) {
+                        giocatoriInParita.add(giocatori.get(i));
+                    }
+                    if (!giocatoriInParita.contains(giocatori.get(i + 1))) {
+                        giocatoriInParita.add(giocatori.get(i + 1));
+                    }
+                }
+            }
+            for (int i = 0; i < giocatoriInParita.size(); i++) {
+                System.out.println(
+                        giocatoriInParita.get(i).getColore() + giocatoriInParita.get(i).getNome() + resetColore);
+            }
+        }
     }
 
 }

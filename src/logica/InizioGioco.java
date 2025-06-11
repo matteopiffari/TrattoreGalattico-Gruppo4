@@ -25,6 +25,7 @@ public class InizioGioco {
 				carta = mazzoCarte.pescaCarta();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
+				tabellone.fineGioco(giocatori);
 				System.out.println("Il gioco termina.");
 				return; // se c'è eccezione esce dalla funzione
 			}
@@ -81,7 +82,7 @@ public class InizioGioco {
 			} else if (carta instanceof NaveAbbandonata) {
 				for (int i = 0; i < giocatori.size(); i++) {
 					if (giocatori.get(i).getNave().getEquipaggio() > ((NaveAbbandonata) carta).getEquipaggioPerso()) {
-						System.out.println("Vuoi perdere " + ((NaveAbbandonata) carta).getEquipaggioPerso()
+						System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome() + "\u001B[0m" + " vuoi perdere " + ((NaveAbbandonata) carta).getEquipaggioPerso()
 								+ " equipaggio e " + ((NaveAbbandonata) carta).getGiorniPersi()
 								+ " giorni per guadagnare "
 								+ ((NaveAbbandonata) carta).getCreditiGuadagnati() + " crediti? (si/no)");
@@ -176,18 +177,7 @@ public class InizioGioco {
 								if (nave.getComponente(t, posizione) != null) {
 									if (dim == Dimensione.METEORITE_GRANDE) {
 										if (nave.getComponente(t, posizione) instanceof Cannone) {
-											if ((((Cannone) nave.getComponente(t, posizione))
-													.getOrientazione() == Orientazione.NORD && dir == Direzione.SOPRA)
-													||
-													(((Cannone) nave.getComponente(t, posizione))
-															.getOrientazione() == Orientazione.OVEST
-															&& dir == Direzione.SINISTRA)
-													|| (((Cannone) nave.getComponente(t, posizione))
-															.getOrientazione() == Orientazione.EST
-															&& dir == Direzione.DESTRA)
-													|| (((Cannone) nave.getComponente(t, posizione))
-															.getOrientazione() == Orientazione.SUD
-															&& dir == Direzione.SOTTO)) {
+											if(((Cannone)nave.getComponente(t, posizione)).getOrientazione()==Orientazione.NORD) {
 
 												System.out.println(
 														giocatori.get(i).getColore() + giocatori.get(i).getNome()
@@ -203,6 +193,14 @@ public class InizioGioco {
 													break; // Esce dal ciclo dopo aver distrutto il primo componente
 												}
 											}
+											else {
+												nave.distruggiComponente(t, posizione);
+												break;
+											}
+										}
+										else {
+											nave.distruggiComponente(t, posizione);
+											break;
 										}
 									} else if (dim == Dimensione.METEORITE_PICCOLO) {
 										if (nave.getComponente(t, posizione)
@@ -224,52 +222,73 @@ public class InizioGioco {
 								if (nave.getComponente(posizione, t) != null) {
 									if (dim == Dimensione.METEORITE_GRANDE) {
 										if (nave.getComponente(posizione, t) instanceof Cannone) {
-											System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
-													+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
+											if(((Cannone)nave.getComponente(posizione, t)).getOrientazione()==Orientazione.EST) {
+												System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
+														+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
 
-											scanner.nextLine();
-											String r = scanner.nextLine();
-											if (r.equals("si")) {
-												System.out.println("il meteorite è esploso");
-												break;
-											} else {
-												nave.distruggiComponente(posizione, t);
-												break; // Esce dal ciclo dopo aver distrutto il primo componente
+												scanner.nextLine();
+												String r = scanner.nextLine();
+												if (r.equals("si")) {
+													System.out.println("il meteorite è esploso");
+													break;
+												} else {
+													nave.distruggiComponente(posizione, t);
+													break; // Esce dal ciclo dopo aver distrutto il primo componente
+												}
 											}
-										}
-									} else if (dim == Dimensione.METEORITE_PICCOLO) {
-										if (nave.getComponente(posizione, t)
-												.getConnettore(Orientazione.EST) != Connettori.NIENTE) {
-											if (nave.presenzaScudo(Orientazione.EST) == false) {
+											else {
 												nave.distruggiComponente(posizione, t);
-												break;
-											} else {
-												System.out.println("il meteorite rimbalza sullo scudo");
 												break;
 											}
 										}
-									}
+										else {
+											nave.distruggiComponente(posizione, t);
+											break;
+										}
+									}else if (dim == Dimensione.METEORITE_PICCOLO) {
+											if (nave.getComponente(posizione, t)
+													.getConnettore(Orientazione.EST) != Connettori.NIENTE) {
+												if (nave.presenzaScudo(Orientazione.EST) == false) {
+													nave.distruggiComponente(posizione, t);
+													break;
+												} else {
+													System.out.println("il meteorite rimbalza sullo scudo");
+													break;
+												}
+											}
+										}
 								}
-
 							}
 						} else if (dir == Direzione.SOTTO) {
 							for (int t = 11; t >= 0; t--) {
 								if (nave.getComponente(t, posizione) != null) {
 									if (dim == Dimensione.METEORITE_GRANDE) {
 										if (nave.getComponente(t, posizione) instanceof Cannone) {
-											System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
-													+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
+											if(((Cannone)nave.getComponente(t, posizione)).getOrientazione()==Orientazione.SUD) {
+												System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
+														+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
 
-											scanner.nextLine();
-											String r = scanner.nextLine();
-											if (r.equals("si")) {
-												System.out.println("il meteorite è esploso");
-												break;
-											} else {
+												scanner.nextLine();
+												String r = scanner.nextLine();
+												if (r.equals("si")) {
+													System.out.println("il meteorite è esploso");
+													break;
+												} else {
+													nave.distruggiComponente(t, posizione);
+													break;
+												}
+											}
+											else {
 												nave.distruggiComponente(t, posizione);
 												break;
 											}
+
 										}
+										else {
+											nave.distruggiComponente(t, posizione);
+											break;
+										}
+										
 									} else if (dim == Dimensione.METEORITE_PICCOLO) {
 										if (nave.getComponente(t, posizione)
 												.getConnettore(Orientazione.SUD) != Connettori.NIENTE) {
@@ -290,18 +309,28 @@ public class InizioGioco {
 								if (nave.getComponente(posizione, t) != null) {
 									if (dim == Dimensione.METEORITE_GRANDE) {
 										if (nave.getComponente(posizione, t) instanceof Cannone) {
-											System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
-													+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
+											if(((Cannone)nave.getComponente(posizione, t)).getOrientazione()==Orientazione.OVEST) {
+												System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
+														+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
 
-											scanner.nextLine();
-											String r = scanner.nextLine();
-											if (r.equals("si")) {
-												System.out.println("il meteorite è esploso");
-												break;
-											} else {
+												scanner.nextLine();
+												String r = scanner.nextLine();
+												if (r.equals("si")) {
+													System.out.println("il meteorite è esploso");
+													break;
+												} else {
+													nave.distruggiComponente(posizione, t);
+													break;
+												}
+											}
+											else {
 												nave.distruggiComponente(posizione, t);
 												break;
-											}
+										}
+										}
+										else {
+											nave.distruggiComponente(posizione, t);
+											break;
 										}
 									} else if (dim == Dimensione.METEORITE_PICCOLO) {
 										if (nave.getComponente(posizione, t)
@@ -392,12 +421,12 @@ public class InizioGioco {
 							giocatori.get(i).getNave().getPotenzaMotrice());
 				}
 			} else if (carta instanceof StazioneAbbandonata) {
+				System.out.println("Equipaggio necessario: " + ((StazioneAbbandonata) carta).getEquipaggioNec());
 				for (int i = 0; i < giocatori.size(); i++) {
-					if (giocatori.get(i).getNave().getEquipaggio() >= ((StazioneAbbandonata) carta)
-							.getEquipaggioNec()) {
+					if (giocatori.get(i).getNave().getEquipaggio() >= ((StazioneAbbandonata) carta).getEquipaggioNec()) {
 						System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome() + "\u001B[0m"
-								+ " vuoi perdere giorni e guadagnare merci? (si/no)");
-
+								+ " vuoi perdere " + ((StazioneAbbandonata) carta).getGiorniPersi() + " giorni e guadagnare " 
+								+ ((StazioneAbbandonata) carta).getMerciGuadagnate().length + " merci? (si/no)");
 						scanner.nextLine();
 						String r = scanner.nextLine();
 
@@ -419,7 +448,7 @@ public class InizioGioco {
 			} else if (carta instanceof ZonaGuerra) {
 				((ZonaGuerra) carta).esegui(tabellone);
 			}
-
+			tabellone.controllaIntegritaNave(giocatori);
 			tabellone.controllaSconfitte(giocatori);
 			if (tabellone.controllaVittorie(giocatori)) {
 				System.out.println("Il gioco è terminato.");
