@@ -104,7 +104,10 @@ public class Nave {
                 risposta = -1;
             }
 
-        } while (risposta < 1 || risposta > 3); // Assicurati che la risposta sia valida
+            if (risposta == 16)
+                break; // test nave
+
+        } while (risposta < 1 || risposta > 4); // Assicurati che la risposta sia valida
 
         if (risposta == 1) {
             int riga = -1;
@@ -172,6 +175,46 @@ public class Nave {
             mazzoComponenti.mescola();
             return 0;
         } else if (risposta == 3) {
+            return 1;
+        } else if (risposta == 16) {
+            Connettori connettori[] = { Connettori.UNIVERSALE, Connettori.UNIVERSALE,
+                    Connettori.UNIVERSALE, Connettori.UNIVERSALE };
+
+            Componente cab1 = new Cabina(connettori);
+            Componente cab2 = new Cabina(connettori);
+            nave[6][7] = cab1;
+            nave[7][8] = cab2;
+            this.setEquipaggio(this.getEquipaggio() + 4);
+
+            Componente motore1 = new Motore(connettori);
+            Componente motore2 = new Motore(connettori);
+            Componente motore3 = new Motore(connettori);
+            nave[7][6] = motore1;
+            nave[8][8] = motore2;
+            nave[8][4] = motore3;
+
+            Componente cannone1 = new Cannone(connettori, 1);
+            Componente cannone2 = new Cannone(connettori, 1);
+            Componente cannone3 = new Cannone(connettori, 1);
+            nave[5][6] = cannone1;
+            nave[6][5] = cannone2;
+            nave[6][8] = cannone3;
+
+            Componente scudo1 = new Scudo(connettori);
+            Componente scudo2 = new Scudo(connettori);
+            nave[6][4] = scudo1;
+            nave[8][7] = scudo2;
+
+            Componente stiva1 = new Stiva(connettori);
+            Componente stiva2 = new Stiva(connettori);
+            nave[8][5] = stiva1;
+            nave[7][7] = stiva2;
+
+            Componente stivaSpeciale1 = new StivaSpeciale(connettori);
+            Componente stivaSpeciale2 = new StivaSpeciale(connettori);
+            nave[7][5] = stivaSpeciale1;
+            nave[7][4] = stivaSpeciale2;
+
             return 1;
         }
         return -1;
@@ -469,8 +512,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.NORD) == false) {
                                 this.distruggiComponente(t, posizione);
-                                System.out.println("la palla di cannone distrugge il componente in [" + t + "]["
-                                        + posizione + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
+                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "
@@ -490,8 +533,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.EST) == false) {
                                 this.distruggiComponente(posizione, t);
-                                System.out.println("la palla di cannone distrugge il componente in [" + t + "]["
-                                        + posizione + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
+                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "
@@ -510,8 +553,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.SUD) == false) {
                                 this.distruggiComponente(t, posizione);
-                                System.out.println("la palla di cannone distrugge il componente in [" + t + "]["
-                                        + posizione + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
+                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "
@@ -530,8 +573,8 @@ public class Nave {
                         } else if (dim == Dimensione.PALLA_CANNONE_PICCOLA) {
                             if (this.presenzaScudo(Orientazione.OVEST) == false) {
                                 this.distruggiComponente(posizione, t);
-                                System.out.println("la palla di cannone distrugge il componente in [" + t + "]["
-                                        + posizione + "] della nave in posizione " + this.getPosizione());
+                                System.out.println("la palla di cannone distrugge il componente in [" + (t + 1) + "]["
+                                        + (posizione + 1) + "] della nave in posizione " + this.getPosizione());
                                 break; // Esce dal ciclo dopo aver distrutto il primo componente
                             } else {
                                 System.out.println("la palla di cannone rimbalza sullo scudo della nave in posizione "

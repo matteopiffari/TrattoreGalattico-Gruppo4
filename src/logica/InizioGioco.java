@@ -33,6 +33,9 @@ public class InizioGioco {
 			System.out.println("Descrizione: " + carta.getDescrizione() + "\n");
 
 			if (carta instanceof Contrabbandieri) {
+				System.out.println("Potenza di fuoco necessaria per affrontare i contrabbandieri: "
+						+ ((Contrabbandieri) carta).getPotenzaFuoco() + "\n");
+
 				for (int i = 0; i < giocatori.size(); i++) {
 					// prima casta carta in contrabbandieri, ottiene potenza di fuoco e casta valore
 					// di ritorno in double
@@ -107,14 +110,17 @@ public class InizioGioco {
 				for (int i = 0; i < giocatori.size(); i++) {
 					if (pianeti.length != 0) {
 						for (int s = 0; s < pianeti.length; s++) {
-							System.out.println("Pianeta " + (s + 1) + " ");
+							System.out.println("Pianeta " + (s + 1) + ":");
+							System.out.println("Giorni persi: " + ((Pianeti) carta).getGiorniPersi());
+							System.out.println("Livello merci:");
 							for (int j = 0; j < pianeti[s].length; j++) {
-								System.out.println(pianeti[s][j] + " ");
+								System.out.println("\t- " + pianeti[s][j]);
 
 							}
 							System.out.println("\n");
 						}
-						System.out.println(giocatori.get(i).getNome() + " vuoi scendere in uno dei pianeti? (si/no)");
+						System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome() + "\u001B[0m"
+								+ " vuoi scendere in uno dei pianeti? (si/no)");
 
 						scanner.nextLine();
 						String r = scanner.nextLine();
@@ -129,7 +135,7 @@ public class InizioGioco {
 									scanner.next();
 							} while (numeroP < 0 || numeroP > 4);
 
-							int[] merciGuadagnate = pianeti[numeroP];
+							int[] merciGuadagnate = pianeti[numeroP - 1];
 
 							// Guadagna merci
 							giocatori.get(i).getNave().guadagnaMerci(merciGuadagnate);
@@ -137,7 +143,7 @@ public class InizioGioco {
 							// perde giorni
 							giocatori.get(i).getNave().setPosizione(
 									giocatori.get(i).getNave().getPosizione()
-											- ((Contrabbandieri) carta).getGiorniPersi());
+											- ((Pianeti) carta).getGiorniPersi());
 
 							int pianeti2[][] = new int[pianeti.length - 1][pianeti[0].length];
 							int conta = 0;
@@ -159,7 +165,7 @@ public class InizioGioco {
 					Dimensione dim = meteoriti[j].getGrandezza();
 
 					System.out.println("Sta arrivando un meteorite "
-							+ (dim == Dimensione.METEORITE_GRANDE ? "grande" : "piccolo") + " da" + dir
+							+ (dim == Dimensione.METEORITE_GRANDE ? "grande" : "piccolo") + " da " + dir
 							+ " alla posizione " + (posizione + 1) + "\n");
 
 					for (int i = 0; i < giocatori.size(); i++) {
@@ -170,17 +176,32 @@ public class InizioGioco {
 								if (nave.getComponente(t, posizione) != null) {
 									if (dim == Dimensione.METEORITE_GRANDE) {
 										if (nave.getComponente(t, posizione) instanceof Cannone) {
-											System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome()
-													+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
+											if ((((Cannone) nave.getComponente(t, posizione))
+													.getOrientazione() == Orientazione.NORD && dir == Direzione.SOPRA)
+													||
+													(((Cannone) nave.getComponente(t, posizione))
+															.getOrientazione() == Orientazione.OVEST
+															&& dir == Direzione.SINISTRA)
+													|| (((Cannone) nave.getComponente(t, posizione))
+															.getOrientazione() == Orientazione.EST
+															&& dir == Direzione.DESTRA)
+													|| (((Cannone) nave.getComponente(t, posizione))
+															.getOrientazione() == Orientazione.SUD
+															&& dir == Direzione.SOTTO)) {
 
-											scanner.nextLine();
-											String r = scanner.nextLine();
-											if (r.equals("si")) {
-												System.out.println("il meteorite è esploso");
-												break;
-											} else {
-												nave.distruggiComponente(t, posizione);
-												break; // Esce dal ciclo dopo aver distrutto il primo componente
+												System.out.println(
+														giocatori.get(i).getColore() + giocatori.get(i).getNome()
+																+ "\u001B[0m" + " vuoi sparare al meteorite? (si/no)");
+
+												scanner.nextLine();
+												String r = scanner.nextLine();
+												if (r.equals("si")) {
+													System.out.println("il meteorite è esploso");
+													break;
+												} else {
+													nave.distruggiComponente(t, posizione);
+													break; // Esce dal ciclo dopo aver distrutto il primo componente
+												}
 											}
 										}
 									} else if (dim == Dimensione.METEORITE_PICCOLO) {
@@ -305,6 +326,10 @@ public class InizioGioco {
 			} else if (carta instanceof Pirati) {
 				for (int i = 0; i < giocatori.size(); i++) {
 					Nave nave = giocatori.get(i).getNave();
+
+					System.out.println("Potenza di fuoco necessaria per affrontare i pirati: "
+							+ ((Pirati) carta).getPotenzaFuoco() + "\n");
+
 					if (nave.getPotenzaFuoco() >= (double) ((Pirati) carta).getPotenzaFuoco()) {
 						System.out.println(giocatori.get(i).getColore() + giocatori.get(i).getNome() + "\u001B[0m"
 								+ " ha abbastanza potenza di fuoco per affrontare i pirati quindi guadagna crediti e perde giorni.");
